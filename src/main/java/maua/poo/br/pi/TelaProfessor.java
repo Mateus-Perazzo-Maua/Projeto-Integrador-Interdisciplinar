@@ -129,6 +129,11 @@ public class TelaProfessor extends javax.swing.JFrame {
 
     private void gerenciarMateriasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerenciarMateriasButtonActionPerformed
         // TODO add your handling code here:
+        TelaGerenciarMaterias tela = new TelaGerenciarMaterias();
+        tela.setVisible(true);
+        
+        // Fecha a tela 
+                    ((JFrame) SwingUtilities.getWindowAncestor(gerenciarMateriasButton)).dispose();
     }//GEN-LAST:event_gerenciarMateriasButtonActionPerformed
 
     private void menuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButtonActionPerformed

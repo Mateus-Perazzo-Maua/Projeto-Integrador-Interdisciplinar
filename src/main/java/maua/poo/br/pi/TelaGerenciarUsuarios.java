@@ -100,9 +100,9 @@ public class TelaGerenciarUsuarios extends javax.swing.JFrame {
                 .addComponent(cmbTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(adicionarButton)
                     .addComponent(removerButton)
-                    .addComponent(voltarButton))
+                    .addComponent(voltarButton)
+                    .addComponent(adicionarButton))
                 .addGap(48, 48, 48))
         );
 

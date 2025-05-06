@@ -30,7 +30,7 @@
                       <Component id="voltarButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="removerButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Component id="adicionarButton" min="-2" pref="83" max="-2" attributes="0"/>
                   </Group>
                   <Component id="txtSenha" alignment="0" max="32767" attributes="0"/>
@@ -52,9 +52,9 @@
               <Component id="cmbTipo" min="-2" pref="31" max="-2" attributes="0"/>
               <EmptySpace pref="38" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="adicionarButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="removerButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="voltarButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="adicionarButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
           </Group>
