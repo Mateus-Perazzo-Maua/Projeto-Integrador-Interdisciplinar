@@ -5,6 +5,7 @@
 package maua.poo.br.pi;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 /**
@@ -30,20 +31,28 @@ public class TelaGerenciarMaterias extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        campoMateria = new javax.swing.JTextField();
+        adicionarButton = new javax.swing.JButton();
+        removerButton = new javax.swing.JButton();
         voltarProfButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gerenciador de materías"));
+        campoMateria.setBorder(javax.swing.BorderFactory.createTitledBorder("Digite o nome da matería"));
 
-        jTextField1.setBorder(javax.swing.BorderFactory.createTitledBorder("Digite o nome da matería"));
+        adicionarButton.setText("Adicionar");
+        adicionarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adicionarButtonActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Adicionar");
-
-        jButton2.setText("Remover");
+        removerButton.setText("Remover");
+        removerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removerButtonActionPerformed(evt);
+            }
+        });
 
         voltarProfButton.setText("Voltar");
         voltarProfButton.addActionListener(new java.awt.event.ActionListener() {
@@ -60,28 +69,27 @@ public class TelaGerenciarMaterias extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(campoMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(55, 55, 55)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(voltarProfButton, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)))))
+                            .addComponent(removerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(adicionarButton, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoMateria, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(adicionarButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(removerButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(voltarProfButton)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -98,7 +106,7 @@ public class TelaGerenciarMaterias extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -112,6 +120,35 @@ public class TelaGerenciarMaterias extends javax.swing.JFrame {
         // Fecha a tela 
                     ((JFrame) SwingUtilities.getWindowAncestor(voltarProfButton)).dispose();
     }//GEN-LAST:event_voltarProfButtonActionPerformed
+
+    private void adicionarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarButtonActionPerformed
+        // TODO add your handling code here:
+    String nomeMateria = campoMateria.getText().trim(); // Substitua com o nome do seu campo de texto
+
+    if (nomeMateria.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Digite o nome da matéria.");
+        return;
+    }
+
+    try {
+        DAO dao = new DAO();
+        boolean sucesso = dao.adicionarMateria(nomeMateria);
+
+        if (sucesso) {
+            JOptionPane.showMessageDialog(this, "Matéria adicionada com sucesso!");
+            campoMateria.setText(""); // Limpa o campo
+        } else {
+            JOptionPane.showMessageDialog(this, "Erro ao adicionar a matéria.");
+        }
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Erro: " + ex.getMessage());
+    }
+ 
+    }//GEN-LAST:event_adicionarButtonActionPerformed
+
+    private void removerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_removerButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,10 +186,10 @@ public class TelaGerenciarMaterias extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton adicionarButton;
+    private javax.swing.JTextField campoMateria;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton removerButton;
     private javax.swing.JButton voltarProfButton;
     // End of variables declaration//GEN-END:variables
 }
