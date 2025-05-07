@@ -27,6 +27,7 @@ public class TelaVisualizarEstatisticas extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+<<<<<<< HEAD
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -54,10 +55,16 @@ public class TelaVisualizarEstatisticas extends javax.swing.JFrame {
             }
         });
 
+=======
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+>>>>>>> 687849bd8f01e7222cada8c4f383102e72142b8d
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jButton3)
@@ -82,6 +89,13 @@ public class TelaVisualizarEstatisticas extends javax.swing.JFrame {
                         .addComponent(jButton3)
                         .addGap(80, 80, 80)))
                 .addComponent(jButton2))
+=======
+            .addGap(0, 318, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 239, Short.MAX_VALUE)
+>>>>>>> 687849bd8f01e7222cada8c4f383102e72142b8d
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -104,6 +118,7 @@ public class TelaVisualizarEstatisticas extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+<<<<<<< HEAD
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -116,6 +131,8 @@ public class TelaVisualizarEstatisticas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
+=======
+>>>>>>> 687849bd8f01e7222cada8c4f383102e72142b8d
     /**
      * @param args the command line arguments
      */
@@ -152,9 +169,12 @@ public class TelaVisualizarEstatisticas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+<<<<<<< HEAD
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+=======
+>>>>>>> 687849bd8f01e7222cada8c4f383102e72142b8d
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

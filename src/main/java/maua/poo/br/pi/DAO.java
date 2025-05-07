@@ -51,6 +51,17 @@ public class DAO {
         int linhasAfetadas = ps.executeUpdate();
         return linhasAfetadas > 0;
     }
+    }
+   public boolean adicionarMateria(String nomeMateria) throws Exception {
+    String sql = "INSERT INTO tb_materia (nome) VALUES (?)";
+
+    try (Connection conn = ConexaoBD.obterConexao();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setString(1, nomeMateria);
+        int linhasAfetadas = ps.executeUpdate();
+        return linhasAfetadas > 0;
+    }
 }
 }
 
