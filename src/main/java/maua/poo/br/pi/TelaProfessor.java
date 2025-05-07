@@ -34,7 +34,7 @@ public class TelaProfessor extends javax.swing.JFrame {
         gerenciarQuestaoButton = new javax.swing.JButton();
         gerenciarMateriasButton = new javax.swing.JButton();
         menuButton = new javax.swing.JButton();
-        vizualizarEstatisticasButton = new javax.swing.JButton();
+        visualizarEstatisticasButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,10 +68,10 @@ public class TelaProfessor extends javax.swing.JFrame {
             }
         });
 
-        vizualizarEstatisticasButton.setText("Vizualizar estatísticas");
-        vizualizarEstatisticasButton.addActionListener(new java.awt.event.ActionListener() {
+        visualizarEstatisticasButton.setText("Vizualizar estatísticas");
+        visualizarEstatisticasButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                vizualizarEstatisticasButtonActionPerformed(evt);
+                visualizarEstatisticasButtonActionPerformed(evt);
             }
         });
 
@@ -86,7 +86,7 @@ public class TelaProfessor extends javax.swing.JFrame {
                     .addComponent(gerenciarQuestaoButton, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                     .addComponent(gerenciarMateriasButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(menuButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(vizualizarEstatisticasButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(visualizarEstatisticasButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -99,7 +99,7 @@ public class TelaProfessor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(gerenciarMateriasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(vizualizarEstatisticasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(visualizarEstatisticasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(menuButton)
                 .addGap(28, 28, 28))
@@ -156,9 +156,14 @@ public class TelaProfessor extends javax.swing.JFrame {
                     ((JFrame) SwingUtilities.getWindowAncestor(menuButton)).dispose();
     }//GEN-LAST:event_menuButtonActionPerformed
 
-    private void vizualizarEstatisticasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vizualizarEstatisticasButtonActionPerformed
+    private void visualizarEstatisticasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizarEstatisticasButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_vizualizarEstatisticasButtonActionPerformed
+        TelaVisualizarEstatisticas tela = new TelaVisualizarEstatisticas();
+        tela.setVisible(true);
+        
+        // Fecha a tela 
+                    ((JFrame) SwingUtilities.getWindowAncestor(visualizarEstatisticasButton)).dispose();
+    }//GEN-LAST:event_visualizarEstatisticasButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,6 +206,6 @@ public class TelaProfessor extends javax.swing.JFrame {
     private javax.swing.JButton gerenciarUsuarioButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton menuButton;
-    private javax.swing.JButton vizualizarEstatisticasButton;
+    private javax.swing.JButton visualizarEstatisticasButton;
     // End of variables declaration//GEN-END:variables
 }
