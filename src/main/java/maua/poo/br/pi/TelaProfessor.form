@@ -33,9 +33,9 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="12" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -60,6 +60,7 @@
                       <Component id="gerenciarQuestaoButton" pref="190" max="32767" attributes="0"/>
                       <Component id="gerenciarMateriasButton" max="32767" attributes="0"/>
                       <Component id="menuButton" max="32767" attributes="0"/>
+                      <Component id="vizualizarEstatisticasButton" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="45" max="32767" attributes="0"/>
               </Group>
@@ -74,9 +75,11 @@
                   <Component id="gerenciarQuestaoButton" min="-2" pref="40" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="gerenciarMateriasButton" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="vizualizarEstatisticasButton" min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace pref="31" max="32767" attributes="0"/>
                   <Component id="menuButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="8" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -112,6 +115,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuButtonActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="vizualizarEstatisticasButton">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Vizualizar estat&#xed;sticas"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="vizualizarEstatisticasButtonActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

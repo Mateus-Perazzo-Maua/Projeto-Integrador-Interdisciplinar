@@ -34,6 +34,7 @@ public class TelaProfessor extends javax.swing.JFrame {
         gerenciarQuestaoButton = new javax.swing.JButton();
         gerenciarMateriasButton = new javax.swing.JButton();
         menuButton = new javax.swing.JButton();
+        vizualizarEstatisticasButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,6 +68,13 @@ public class TelaProfessor extends javax.swing.JFrame {
             }
         });
 
+        vizualizarEstatisticasButton.setText("Vizualizar estatísticas");
+        vizualizarEstatisticasButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vizualizarEstatisticasButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -77,7 +85,8 @@ public class TelaProfessor extends javax.swing.JFrame {
                     .addComponent(gerenciarUsuarioButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(gerenciarQuestaoButton, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                     .addComponent(gerenciarMateriasButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(menuButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(menuButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(vizualizarEstatisticasButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -89,9 +98,11 @@ public class TelaProfessor extends javax.swing.JFrame {
                 .addComponent(gerenciarQuestaoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(gerenciarMateriasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(vizualizarEstatisticasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(menuButton)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addGap(28, 28, 28))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -106,9 +117,9 @@ public class TelaProfessor extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+                .addGap(24, 24, 24))
         );
 
         pack();
@@ -144,6 +155,10 @@ public class TelaProfessor extends javax.swing.JFrame {
         // Fecha a tela 
                     ((JFrame) SwingUtilities.getWindowAncestor(menuButton)).dispose();
     }//GEN-LAST:event_menuButtonActionPerformed
+
+    private void vizualizarEstatisticasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vizualizarEstatisticasButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_vizualizarEstatisticasButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,5 +201,6 @@ public class TelaProfessor extends javax.swing.JFrame {
     private javax.swing.JButton gerenciarUsuarioButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton menuButton;
+    private javax.swing.JButton vizualizarEstatisticasButton;
     // End of variables declaration//GEN-END:variables
 }
