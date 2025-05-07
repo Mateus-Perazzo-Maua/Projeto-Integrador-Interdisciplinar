@@ -32,7 +32,6 @@ public class TelaProfessor extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         gerenciarUsuarioButton = new javax.swing.JButton();
         gerenciarQuestaoButton = new javax.swing.JButton();
-        gerenciarMateriasButton = new javax.swing.JButton();
         menuButton = new javax.swing.JButton();
         visualizarEstatisticasButton = new javax.swing.JButton();
 
@@ -51,13 +50,6 @@ public class TelaProfessor extends javax.swing.JFrame {
         gerenciarQuestaoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 gerenciarQuestaoButtonActionPerformed(evt);
-            }
-        });
-
-        gerenciarMateriasButton.setText("Gerenciar matérias");
-        gerenciarMateriasButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gerenciarMateriasButtonActionPerformed(evt);
             }
         });
 
@@ -84,7 +76,6 @@ public class TelaProfessor extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(gerenciarUsuarioButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(gerenciarQuestaoButton, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                    .addComponent(gerenciarMateriasButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(menuButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(visualizarEstatisticasButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(45, Short.MAX_VALUE))
@@ -94,15 +85,13 @@ public class TelaProfessor extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(gerenciarUsuarioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(gerenciarQuestaoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(gerenciarMateriasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(visualizarEstatisticasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
                 .addComponent(menuButton)
-                .addGap(28, 28, 28))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -119,7 +108,7 @@ public class TelaProfessor extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addGap(53, 53, 53))
         );
 
         pack();
@@ -137,15 +126,6 @@ public class TelaProfessor extends javax.swing.JFrame {
         // Fecha a tela 
                     ((JFrame) SwingUtilities.getWindowAncestor(gerenciarUsuarioButton)).dispose();
     }//GEN-LAST:event_gerenciarUsuarioButtonActionPerformed
-
-    private void gerenciarMateriasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerenciarMateriasButtonActionPerformed
-        // TODO add your handling code here:
-        TelaGerenciarMaterias tela = new TelaGerenciarMaterias();
-        tela.setVisible(true);
-        
-        // Fecha a tela 
-                    ((JFrame) SwingUtilities.getWindowAncestor(gerenciarMateriasButton)).dispose();
-    }//GEN-LAST:event_gerenciarMateriasButtonActionPerformed
 
     private void menuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuButtonActionPerformed
         // TODO add your handling code here:
@@ -201,7 +181,6 @@ public class TelaProfessor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton gerenciarMateriasButton;
     private javax.swing.JButton gerenciarQuestaoButton;
     private javax.swing.JButton gerenciarUsuarioButton;
     private javax.swing.JPanel jPanel1;

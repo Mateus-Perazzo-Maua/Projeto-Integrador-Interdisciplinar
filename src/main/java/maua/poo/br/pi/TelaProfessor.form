@@ -35,7 +35,7 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -58,7 +58,6 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="gerenciarUsuarioButton" max="32767" attributes="0"/>
                       <Component id="gerenciarQuestaoButton" pref="190" max="32767" attributes="0"/>
-                      <Component id="gerenciarMateriasButton" max="32767" attributes="0"/>
                       <Component id="menuButton" max="32767" attributes="0"/>
                       <Component id="visualizarEstatisticasButton" max="32767" attributes="0"/>
                   </Group>
@@ -71,15 +70,13 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                   <Component id="gerenciarUsuarioButton" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="gerenciarQuestaoButton" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="gerenciarMateriasButton" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="visualizarEstatisticasButton" min="-2" pref="40" max="-2" attributes="0"/>
-                  <EmptySpace pref="31" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Component id="menuButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace pref="38" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -99,14 +96,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gerenciarQuestaoButtonActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="gerenciarMateriasButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Gerenciar mat&#xe9;rias"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gerenciarMateriasButtonActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="menuButton">
