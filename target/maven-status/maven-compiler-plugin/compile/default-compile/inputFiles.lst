@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\25.00404-5\OneDrive - Instituto Mauá de Tecnologia\Documentos\P.I\Projeto-Integrador-Interdisciplinar\src\main\java\maua\poo\br\pi\CHUPETA.java
 C:\Users\25.00404-5\OneDrive - Instituto Mauá de Tecnologia\Documentos\P.I\Projeto-Integrador-Interdisciplinar\src\main\java\maua\poo\br\pi\ConexaoBD.java
 C:\Users\25.00404-5\OneDrive - Instituto Mauá de Tecnologia\Documentos\P.I\Projeto-Integrador-Interdisciplinar\src\main\java\maua\poo\br\pi\DAO.java
@@ -9,3 +10,14 @@ C:\Users\25.00404-5\OneDrive - Instituto Mauá de Tecnologia\Documentos\P.I\Proj
 C:\Users\25.00404-5\OneDrive - Instituto Mauá de Tecnologia\Documentos\P.I\Projeto-Integrador-Interdisciplinar\src\main\java\maua\poo\br\pi\TelaVisualizarEstatisticas.java
 C:\Users\25.00404-5\OneDrive - Instituto Mauá de Tecnologia\Documentos\P.I\Projeto-Integrador-Interdisciplinar\src\main\java\maua\poo\br\pi\Teste.java
 C:\Users\25.00404-5\OneDrive - Instituto Mauá de Tecnologia\Documentos\P.I\Projeto-Integrador-Interdisciplinar\src\main\java\maua\poo\br\pi\Usuario.java
+=======
+C:\Users\25.00934-1\OneDrive - Instituto Mauá de Tecnologia\Documentos\Pi\Projeto-Integrador-Interdisciplinar\src\main\java\maua\poo\br\pi\ConexaoBD.java
+C:\Users\25.00934-1\OneDrive - Instituto Mauá de Tecnologia\Documentos\Pi\Projeto-Integrador-Interdisciplinar\src\main\java\maua\poo\br\pi\DAO.java
+C:\Users\25.00934-1\OneDrive - Instituto Mauá de Tecnologia\Documentos\Pi\Projeto-Integrador-Interdisciplinar\src\main\java\maua\poo\br\pi\TelaAluno.java
+C:\Users\25.00934-1\OneDrive - Instituto Mauá de Tecnologia\Documentos\Pi\Projeto-Integrador-Interdisciplinar\src\main\java\maua\poo\br\pi\TelaGerenciarMaterias.java
+C:\Users\25.00934-1\OneDrive - Instituto Mauá de Tecnologia\Documentos\Pi\Projeto-Integrador-Interdisciplinar\src\main\java\maua\poo\br\pi\TelaGerenciarUsuarios.java
+C:\Users\25.00934-1\OneDrive - Instituto Mauá de Tecnologia\Documentos\Pi\Projeto-Integrador-Interdisciplinar\src\main\java\maua\poo\br\pi\TelaPi.java
+C:\Users\25.00934-1\OneDrive - Instituto Mauá de Tecnologia\Documentos\Pi\Projeto-Integrador-Interdisciplinar\src\main\java\maua\poo\br\pi\TelaProfessor.java
+C:\Users\25.00934-1\OneDrive - Instituto Mauá de Tecnologia\Documentos\Pi\Projeto-Integrador-Interdisciplinar\src\main\java\maua\poo\br\pi\TelaVisualizarEstatisticas.java
+C:\Users\25.00934-1\OneDrive - Instituto Mauá de Tecnologia\Documentos\Pi\Projeto-Integrador-Interdisciplinar\src\main\java\maua\poo\br\pi\Usuario.java
+>>>>>>> d1007e535910e3dd7eb73d7f1d413249956d08ff
