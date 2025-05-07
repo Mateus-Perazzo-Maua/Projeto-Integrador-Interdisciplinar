@@ -2,6 +2,7 @@ maua\poo\br\pi\DAO.class
 maua\poo\br\pi\TelaGerenciarUsuarios$3.class
 maua\poo\br\pi\TelaPi.class
 maua\poo\br\pi\TelaProfessor$1.class
+maua\poo\br\pi\TelaVisualizarEstatisticas$3.class
 maua\poo\br\pi\TelaGerenciarUsuarios$1.class
 maua\poo\br\pi\TelaProfessor$6.class
 maua\poo\br\pi\TelaPi$2.class
@@ -17,6 +18,7 @@ maua\poo\br\pi\TelaAluno.class
 maua\poo\br\pi\TelaProfessor.class
 maua\poo\br\pi\ConexaoBD.class
 maua\poo\br\pi\TelaGerenciarMaterias$2.class
+maua\poo\br\pi\TelaVisualizarEstatisticas$4.class
 maua\poo\br\pi\TelaPi$1.class
 maua\poo\br\pi\TelaAluno$1.class
 maua\poo\br\pi\TelaProfessor$5.class
