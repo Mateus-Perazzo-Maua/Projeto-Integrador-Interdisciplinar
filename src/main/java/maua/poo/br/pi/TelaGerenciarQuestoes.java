@@ -55,7 +55,7 @@ public class TelaGerenciarQuestoes extends javax.swing.JFrame {
 
         enunciadoLabel.setText("Enunciado da questão");
 
-        materiaCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Portugês", "Literatura", "História", "Geografia", "Filosofia", "Sociologia", "Inglês", "Matemática", "Física", "Química", "Biologia" }));
+        materiaCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Português", "Literatura", "História", "Geografia", "Filosofia", "Sociologia", "Inglês", "Matemática", "Física", "Química", "Biologia" }));
 
         materiaLabel.setText("Selecione a matéria");
 

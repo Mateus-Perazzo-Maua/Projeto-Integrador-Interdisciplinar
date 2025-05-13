@@ -135,7 +135,7 @@
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="11">
-                <StringItem index="0" value="Portug&#xea;s"/>
+                <StringItem index="0" value="Portugu&#xea;s"/>
                 <StringItem index="1" value="Literatura"/>
                 <StringItem index="2" value="Hist&#xf3;ria"/>
                 <StringItem index="3" value="Geografia"/>
