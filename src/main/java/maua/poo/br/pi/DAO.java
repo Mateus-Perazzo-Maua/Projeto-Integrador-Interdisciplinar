@@ -7,6 +7,7 @@ package maua.poo.br.pi;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -52,6 +53,29 @@ public class DAO {
         return linhasAfetadas > 0;
     }
     }
+
+   public boolean adicionarQuestao(String materia, String enunciado, String a, String b, String c, String d, String correta) throws Exception {
+    String sql = "INSERT INTO questoes (materia, enunciado, alternativaA, alternativaB, alternativaC, alternativaD, correta) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+    try (Connection conn = ConexaoBD.obterConexao();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, materia);
+        stmt.setString(2, enunciado);
+        stmt.setString(3, a);
+        stmt.setString(4, b);
+        stmt.setString(5, c);
+        stmt.setString(6, d);
+        stmt.setString(7, correta);
+
+        stmt.executeUpdate();
+        return true;
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+   }
 }
+   
 
 

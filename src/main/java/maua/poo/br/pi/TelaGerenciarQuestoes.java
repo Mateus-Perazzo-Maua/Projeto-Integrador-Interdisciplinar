@@ -4,16 +4,20 @@
  */
 package maua.poo.br.pi;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author 25.01392-1
  */
-public class TelaGerenciarQuestao extends javax.swing.JFrame {
+public class TelaGerenciarQuestoes extends javax.swing.JFrame {
 
     /**
      * Creates new form TelaGerenciarQuestao
      */
-    public TelaGerenciarQuestao() {
+    public TelaGerenciarQuestoes() {
         initComponents();
     }
 
@@ -28,7 +32,7 @@ public class TelaGerenciarQuestao extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        enunciadoTextArea = new javax.swing.JTextArea();
         enunciadoLabel = new javax.swing.JLabel();
         materiaCombo = new javax.swing.JComboBox<>();
         materiaLabel = new javax.swing.JLabel();
@@ -38,14 +42,16 @@ public class TelaGerenciarQuestao extends javax.swing.JFrame {
         altCTextField = new javax.swing.JTextField();
         altCorretaLabel = new javax.swing.JLabel();
         altCorretaCombo = new javax.swing.JComboBox<>();
+        adicionarQuestaoButton = new javax.swing.JButton();
+        voltarButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Gerenciamento de questões"));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        enunciadoTextArea.setColumns(20);
+        enunciadoTextArea.setRows(5);
+        jScrollPane1.setViewportView(enunciadoTextArea);
 
         enunciadoLabel.setText("Enunciado da questão");
 
@@ -65,6 +71,20 @@ public class TelaGerenciarQuestao extends javax.swing.JFrame {
 
         altCorretaCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D" }));
 
+        adicionarQuestaoButton.setText("Adicionar questão");
+        adicionarQuestaoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adicionarQuestaoButtonActionPerformed(evt);
+            }
+        });
+
+        voltarButton.setText("Voltar");
+        voltarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltarButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -82,6 +102,12 @@ public class TelaGerenciarQuestao extends javax.swing.JFrame {
                     .addComponent(altCorretaLabel))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(altCorretaCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(66, 66, 66)
+                .addComponent(voltarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(adicionarQuestaoButton)
+                .addGap(77, 77, 77))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -106,7 +132,11 @@ public class TelaGerenciarQuestao extends javax.swing.JFrame {
                 .addComponent(altCorretaLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(altCorretaCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(adicionarQuestaoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(voltarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -129,10 +159,55 @@ public class TelaGerenciarQuestao extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+    private void adicionarQuestaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarQuestaoButtonActionPerformed
+        // TODO add your handling code here:
+            String materia = materiaCombo.getSelectedItem().toString();
+            String enunciado = enunciadoTextArea.getText();
+            String a = altATextField.getText();
+            String b = altBTextField.getText();
+            String c = altCTextField.getText();
+            String d = altDTextField.getText();
+            String correta = altCorretaCombo.getSelectedItem().toString();
+
+        if (enunciado.isEmpty() || a.isEmpty() || b.isEmpty() || c.isEmpty() || d.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Preencha todos os campos.");
+            return; // tudo certo aqui
+        }
+
+        DAO dao = new DAO();
+
+        try {
+            if (dao.adicionarQuestao(materia, enunciado, a, b, c, d, correta)) {
+                JOptionPane.showMessageDialog(this, "Questão adicionada com sucesso!");
+
+                enunciadoTextArea.setText("");
+                altATextField.setText("");
+                altBTextField.setText("");
+                altCTextField.setText("");
+                altDTextField.setText("");
+                altCorretaCombo.setSelectedIndex(0);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Erro ao adicionar questão.");
+        }
+
+    } catch (Exception ex) {
+        Logger.getLogger(TelaGerenciarQuestoes.class.getName()).log(Level.SEVERE, null, ex);
+    }
+
+    }//GEN-LAST:event_adicionarQuestaoButtonActionPerformed
+
+    private void voltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarButtonActionPerformed
+        // TODO add your handling code here:
+        TelaProfessor tela = new TelaProfessor();
+        tela.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_voltarButtonActionPerformed
+
+        /**
+         * @param args the command line arguments
+         */
+        public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -146,25 +221,27 @@ public class TelaGerenciarQuestao extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaGerenciarQuestao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciarQuestoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaGerenciarQuestao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciarQuestoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaGerenciarQuestao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciarQuestoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaGerenciarQuestao.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaGerenciarQuestoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaGerenciarQuestao().setVisible(true);
+                new TelaGerenciarQuestoes().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton adicionarQuestaoButton;
     private javax.swing.JTextField altATextField;
     private javax.swing.JTextField altBTextField;
     private javax.swing.JTextField altCTextField;
@@ -172,10 +249,11 @@ public class TelaGerenciarQuestao extends javax.swing.JFrame {
     private javax.swing.JLabel altCorretaLabel;
     private javax.swing.JTextField altDTextField;
     private javax.swing.JLabel enunciadoLabel;
+    private javax.swing.JTextArea enunciadoTextArea;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JComboBox<String> materiaCombo;
     private javax.swing.JLabel materiaLabel;
+    private javax.swing.JButton voltarButton;
     // End of variables declaration//GEN-END:variables
 }
