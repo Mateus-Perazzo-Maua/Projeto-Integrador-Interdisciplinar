@@ -116,6 +116,9 @@ public class TelaProfessor extends javax.swing.JFrame {
 
     private void gerenciarQuestaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerenciarQuestaoButtonActionPerformed
         // TODO add your handling code here:
+        TelaGerenciarQuestao tela = new TelaGerenciarQuestao();
+        tela.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_gerenciarQuestaoButtonActionPerformed
 
     private void gerenciarUsuarioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerenciarUsuarioButtonActionPerformed
