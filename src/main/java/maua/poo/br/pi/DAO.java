@@ -54,21 +54,23 @@ public class DAO {
     }
     }
 
-   public boolean adicionarQuestao(String materia, String enunciado, String a, String b, String c, String d, String correta) throws Exception {
-    String sql = "INSERT INTO questoes (materia, enunciado, alternativaA, alternativaB, alternativaC, alternativaD, correta) VALUES (?, ?, ?, ?, ?, ?, ?)";
+   public boolean adicionarQuestao(String materia, String serie, String dificuldade, String enunciado, String a, String b, String c, String d, String correta) throws Exception {
+    String sql = "INSERT INTO questoes (materia, serie, dificuldade, enunciado, alternativaA, alternativaB, alternativaC, alternativaD, correta) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     try (Connection conn = ConexaoBD.obterConexao();
          PreparedStatement stmt = conn.prepareStatement(sql)) {
         stmt.setString(1, materia);
-        stmt.setString(2, enunciado);
-        stmt.setString(3, a);
-        stmt.setString(4, b);
-        stmt.setString(5, c);
-        stmt.setString(6, d);
-        stmt.setString(7, correta);
+        stmt.setString(2, serie);
+        stmt.setString(3, dificuldade);
+        stmt.setString(4, enunciado);
+        stmt.setString(5, a);
+        stmt.setString(6, b);
+        stmt.setString(7, c);
+        stmt.setString(8, d);
+        stmt.setString(9, correta);
 
-        stmt.executeUpdate();
-        return true;
+        return stmt.executeUpdate() > 0;
+        
 
     } catch (SQLException e) {
         e.printStackTrace();
