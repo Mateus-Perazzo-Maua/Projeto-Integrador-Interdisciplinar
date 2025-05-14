@@ -43,7 +43,7 @@ public class TelaGerenciarUsuarios extends javax.swing.JFrame {
 
         txtSenha.setBorder(javax.swing.BorderFactory.createTitledBorder("Senha"));
 
-        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "aluno", "professor", " " }));
+        cmbTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aluno", "Professor", " " }));
         cmbTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbTipoActionPerformed(evt);
