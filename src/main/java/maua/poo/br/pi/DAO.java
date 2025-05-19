@@ -4,10 +4,12 @@
  */
 package maua.poo.br.pi;
 
+import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -77,6 +79,55 @@ public class DAO {
         return false;
     }
    }
+   
+    /**
+     *
+     * @param materia
+     * @param serie
+     * @param dificuldade
+     * @return
+     * @throws java.lang.Exception
+     */
+    public List<Questao> buscarQuestoesPorFiltro(String materia, String serie, String dificuldade) throws Exception {
+    List<Questao> lista = new ArrayList<>();
+
+    String sql = "SELECT * FROM questoes WHERE LOWER(materia)=? AND LOWER(serie)=? AND LOWER(dificuldade)=?";
+    
+    try (Connection conn = ConexaoBD.obterConexao();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setString(1, materia.toLowerCase().trim());
+        stmt.setString(2, serie.toLowerCase().trim());
+        stmt.setString(3, dificuldade.toLowerCase().trim());
+
+        ResultSet rs = stmt.executeQuery();
+        
+        while (rs.next()) {
+            Questao q = new Questao();
+            q.setId(rs.getInt("id"));
+            q.setEnunciado(rs.getString("enunciado"));
+            q.setCorreta(rs.getString("materia"));
+            lista.add(q);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    
+    return lista;
+}
+
+
+    public boolean removerQuestaoPorId(int id) throws Exception {
+    String sql = "DELETE FROM questoes WHERE id=?";
+    try (Connection conn = ConexaoBD.obterConexao();
+         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        stmt.setInt(1, id);
+        return stmt.executeUpdate() > 0;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+    }    
+
 }
    
 
