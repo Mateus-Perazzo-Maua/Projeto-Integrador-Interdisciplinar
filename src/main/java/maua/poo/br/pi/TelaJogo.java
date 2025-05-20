@@ -174,6 +174,9 @@ public class TelaJogo extends javax.swing.JFrame {
 
     private void dicasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dicasButtonActionPerformed
         // TODO add your handling code here:
+        TelaDica tela = new TelaDica();
+        tela.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_dicasButtonActionPerformed
 
     private void alternativaDButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaDButtonActionPerformed
