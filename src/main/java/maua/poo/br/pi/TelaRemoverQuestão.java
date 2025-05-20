@@ -51,6 +51,7 @@ public class TelaRemoverQuestão extends javax.swing.JFrame {
         questoesTable = new javax.swing.JTable();
         filtrarButton = new javax.swing.JButton();
         removerSelecionadaButton = new javax.swing.JButton();
+        voltarRemoverButton = new javax.swing.JButton();
 
         dificuldadeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fácil", "Média", "Difícil" }));
         dificuldadeCombo.addActionListener(new java.awt.event.ActionListener() {
@@ -155,6 +156,13 @@ public class TelaRemoverQuestão extends javax.swing.JFrame {
             }
         });
 
+        voltarRemoverButton.setText("Voltar");
+        voltarRemoverButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltarRemoverButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -163,14 +171,18 @@ public class TelaRemoverQuestão extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(removerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(140, 140, 140)
+                .addGap(153, 153, 153)
+                .addComponent(voltarRemoverButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(filtrarButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 204, Short.MAX_VALUE)
+                .addGap(155, 155, 155))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(removerSelecionadaButton)
-                .addGap(134, 134, 134))
+                .addGap(274, 274, 274))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,11 +191,13 @@ public class TelaRemoverQuestão extends javax.swing.JFrame {
                 .addComponent(removerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(filtrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(removerSelecionadaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30))
+                    .addComponent(voltarRemoverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(removerSelecionadaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();
@@ -242,6 +256,13 @@ public class TelaRemoverQuestão extends javax.swing.JFrame {
     private void serieComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serieComboActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_serieComboActionPerformed
+
+    private void voltarRemoverButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarRemoverButtonActionPerformed
+        // TODO add your handling code here:
+        TelaGerenciarQuestoes tela = new TelaGerenciarQuestoes();
+        tela.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_voltarRemoverButtonActionPerformed
 
     private void carregarQuestoes() throws Exception {
         String materia = materiaCombo.getSelectedItem().toString().trim();
@@ -310,5 +331,6 @@ public class TelaRemoverQuestão extends javax.swing.JFrame {
     private javax.swing.JPanel removerPanel;
     private javax.swing.JButton removerSelecionadaButton;
     private javax.swing.JComboBox<String> serieCombo;
+    private javax.swing.JButton voltarRemoverButton;
     // End of variables declaration//GEN-END:variables
 }
