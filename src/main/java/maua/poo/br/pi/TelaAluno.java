@@ -4,6 +4,9 @@
  */
 package maua.poo.br.pi;
 
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author 25.00357-5
@@ -99,12 +102,14 @@ public class TelaAluno extends javax.swing.JFrame {
 
     private void sairButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairButtonActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+      
     }//GEN-LAST:event_sairButtonActionPerformed
 
     private void jogarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jogarButtonActionPerformed
         // TODO add your handling code here:
-            this.dispose(); // Fecha a tela atual
+        TelaJogo tela = new TelaJogo();
+        tela.setVisible(true);
+        ((JFrame) SwingUtilities.getWindowAncestor(jogarButton)).dispose();
     }//GEN-LAST:event_jogarButtonActionPerformed
 
     /**
