@@ -1,13 +1,20 @@
 maua\poo\br\pi\DAO.class
 maua\poo\br\pi\TelaGerenciarUsuarios$3.class
+maua\poo\br\pi\TelaGerenciarQuestoes$5.class
 maua\poo\br\pi\TelaGerenciarQuestoes.class
 maua\poo\br\pi\TelaPi.class
+maua\poo\br\pi\TelaRemoverQuestão$7.class
 maua\poo\br\pi\TelaProfessor$1.class
 maua\poo\br\pi\TelaGerenciarUsuarios$1.class
+<<<<<<< HEAD
 maua\poo\br\pi\TelaJogo$5.class
+=======
+maua\poo\br\pi\TelaRemoverQuestão.class
+>>>>>>> bfa0a42246b1dad523bbb073216a93811dfa26ad
 maua\poo\br\pi\TelaPi$2.class
 maua\poo\br\pi\TelaGerenciarUsuarios$6.class
 maua\poo\br\pi\TelaGerenciarQuestoes$2.class
+maua\poo\br\pi\TelaRemoverQuestão$3.class
 maua\poo\br\pi\TelaVisualizarEstatisticas$1.class
 maua\poo\br\pi\TelaGerenciarUsuarios$5.class
 maua\poo\br\pi\TelaPi$5.class
@@ -17,11 +24,19 @@ maua\poo\br\pi\TelaGerenciarQuestoes$4.class
 maua\poo\br\pi\TelaAluno.class
 maua\poo\br\pi\TelaJogo$7.class
 maua\poo\br\pi\TelaProfessor.class
+<<<<<<< HEAD
 maua\poo\br\pi\TelaJogo$2.class
 maua\poo\br\pi\ConexaoBD.class
 maua\poo\br\pi\TelaJogo$6.class
 maua\poo\br\pi\TelaJogo$1.class
+=======
+maua\poo\br\pi\TelaRemoverQuestão$1.class
+maua\poo\br\pi\ConexaoBD.class
+maua\poo\br\pi\questoesTable.class
+maua\poo\br\pi\TelaRemoverQuestão$6.class
+>>>>>>> bfa0a42246b1dad523bbb073216a93811dfa26ad
 maua\poo\br\pi\TelaPi$1.class
+maua\poo\br\pi\Questao.class
 maua\poo\br\pi\TelaAluno$1.class
 maua\poo\br\pi\TelaProfessor$5.class
 maua\poo\br\pi\TelaPi$3.class
@@ -29,11 +44,21 @@ maua\poo\br\pi\TelaPi$6.class
 maua\poo\br\pi\TelaJogo$8.class
 maua\poo\br\pi\TelaGerenciarQuestoes$1.class
 maua\poo\br\pi\TelaGerenciarUsuarios$2.class
+<<<<<<< HEAD
 maua\poo\br\pi\TelaJogo$4.class
+=======
+maua\poo\br\pi\TelaGerenciarQuestoes$6.class
+maua\poo\br\pi\TelaRemoverQuestão$4.class
+>>>>>>> bfa0a42246b1dad523bbb073216a93811dfa26ad
 maua\poo\br\pi\TelaProfessor$2.class
 maua\poo\br\pi\TelaJogo$3.class
 maua\poo\br\pi\TelaGerenciarUsuarios.class
+<<<<<<< HEAD
 maua\poo\br\pi\TelaJogo.class
+=======
+maua\poo\br\pi\TelaRemoverQuestão$5.class
+maua\poo\br\pi\TelaRemoverQuestão$2.class
+>>>>>>> bfa0a42246b1dad523bbb073216a93811dfa26ad
 maua\poo\br\pi\TelaGerenciarQuestoes$3.class
 maua\poo\br\pi\TelaGerenciarUsuarios$4.class
 maua\poo\br\pi\TelaAluno$2.class
