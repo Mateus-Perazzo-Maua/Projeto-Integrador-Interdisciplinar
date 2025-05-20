@@ -108,7 +108,7 @@ public class DAO {
             Questao q = new Questao();
             q.setId(rs.getInt("id"));
             q.setEnunciado(rs.getString("enunciado"));
-            q.setCorreta(rs.getString("materia"));
+            q.setCorreta(rs.getString("correta")); // não "materia"!
             lista.add(q);
         }
     } catch (SQLException e) {
