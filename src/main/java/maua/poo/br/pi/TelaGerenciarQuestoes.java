@@ -61,6 +61,11 @@ public class TelaGerenciarQuestoes extends javax.swing.JFrame {
         enunciadoLabel.setText("Enunciado da questão");
 
         materiaCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Português", "Literatura", "História", "Geografia", "Filosofia", "Sociologia", "Inglês", "Matemática", "Física", "Química", "Biologia" }));
+        materiaCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                materiaComboActionPerformed(evt);
+            }
+        });
 
         materiaLabel.setText("Selecione a matéria");
 
@@ -201,9 +206,9 @@ public class TelaGerenciarQuestoes extends javax.swing.JFrame {
 
     private void adicionarQuestaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adicionarQuestaoButtonActionPerformed
         // TODO add your handling code here:
-            String materia = materiaCombo.getSelectedItem().toString();
-            String serie = serieCombo.getSelectedItem().toString();
-            String dificuldade = dificuldadeCombo.getSelectedItem().toString();
+            String materia = materiaCombo.getSelectedItem().toString().trim();
+            String serie = serieCombo.getSelectedItem().toString().trim();
+            String dificuldade = dificuldadeCombo.getSelectedItem().toString().trim();
             String enunciado = enunciadoTextArea.getText();
             String a = altATextField.getText();
             String b = altBTextField.getText();
@@ -254,6 +259,10 @@ public class TelaGerenciarQuestoes extends javax.swing.JFrame {
         // TODO add your handling code here:
         new TelaRemoverQuestão().setVisible(true);
     }//GEN-LAST:event_removerQuestaoButtonActionPerformed
+
+    private void materiaComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materiaComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_materiaComboActionPerformed
 
         /**
          * @param args the command line arguments

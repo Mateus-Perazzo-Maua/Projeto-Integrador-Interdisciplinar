@@ -79,6 +79,11 @@ public class TelaRemoverQuestão extends javax.swing.JFrame {
         materiaLabel.setText("Selecione a matéria");
 
         serieCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Primeiro", "Segundo", "Terceiro" }));
+        serieCombo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                serieComboActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Selecione a série");
 
@@ -234,10 +239,14 @@ public class TelaRemoverQuestão extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_removerSelecionadaButtonActionPerformed
 
+    private void serieComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_serieComboActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_serieComboActionPerformed
+
     private void carregarQuestoes() throws Exception {
         String materia = materiaCombo.getSelectedItem().toString().trim();
         String serie = serieCombo.getSelectedItem().toString().trim();
-        String dificuldade = dificuldadeCombo.getSelectedItem().toString().trim();
+        String dificuldade = dificuldadeCombo2.getSelectedItem().toString().trim();
 
         DefaultTableModel modelo = (DefaultTableModel) questoesTable.getModel();
         modelo.setRowCount(0); // limpa a tabela

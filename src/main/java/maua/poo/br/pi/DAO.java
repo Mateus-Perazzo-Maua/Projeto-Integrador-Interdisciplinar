@@ -94,11 +94,14 @@ public class DAO {
     String sql = "SELECT * FROM questoes WHERE LOWER(materia)=? AND LOWER(serie)=? AND LOWER(dificuldade)=?";
     
     try (Connection conn = ConexaoBD.obterConexao();
-         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        PreparedStatement stmt = conn.prepareStatement(sql)) {
         stmt.setString(1, materia.toLowerCase().trim());
         stmt.setString(2, serie.toLowerCase().trim());
         stmt.setString(3, dificuldade.toLowerCase().trim());
-
+        System.out.println(sql);
+        System.out.println(materia.toLowerCase().trim());
+        System.out.println(serie.toLowerCase().trim());
+        System.out.println(dificuldade.toLowerCase().trim());
         ResultSet rs = stmt.executeQuery();
         
         while (rs.next()) {
