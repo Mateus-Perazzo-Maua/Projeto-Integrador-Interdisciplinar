@@ -4,19 +4,162 @@
  */
 package maua.poo.br.pi;
 
+import java.awt.Color;
+import java.util.List;
+import javax.swing.JOptionPane;
+import maua.poo.br.pi.DAO.QuestaoDAO;
+
 /**
  *
  * @author 25.00404-5
  */
 public class TelaJogo extends javax.swing.JFrame {
 
+    private List<Questao> listaQuestoes;
+    private int questaoAtual = 0;
+    private int pontuacao = 0;
+    private int totalQuestoes = 0;
     /**
      * Creates new form TelaJogo
      */
     public TelaJogo() {
         initComponents();
-    }
+        iniciarJogo();
+ }
 
+     private void iniciarJogo() {
+    try {
+        // Carregar todas as questões do banco
+        listaQuestoes = QuestaoDAO.buscarTodasQuestoes();
+        totalQuestoes = listaQuestoes.size();
+
+        if (totalQuestoes > 0) {
+            // Exibir a primeira questão
+            carregarQuestao(0);
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há questões cadastradas no banco de dados!",
+                                          "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Erro ao iniciar o jogo: " + e.getMessage(),
+                                      "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+}
+    
+    
+    // Método para carregar uma questão específica
+    private void carregarQuestao(int indice) {
+        if (indice < listaQuestoes.size()) {
+            Questao q = listaQuestoes.get(indice);
+            
+            // Exibir enunciado e alternativas
+            txtPergunta.setText(q.getEnunciado());
+            alternativaAButton.setText(q.getAlternativaA());
+            alternativaBButton.setText(q.getAlternativaB());
+            alternativaCButton.setText(q.getAlternativaC());
+            alternativaDButton.setText(q.getAlternativaD());
+            
+            // Resetar cores dos botões
+            resetarCoresBotoes();
+            
+            // Atualizar questão atual
+            questaoAtual = indice;
+        }
+    }
+    
+    // Método para verificar resposta selecionada
+    private void verificarResposta(String alternativa) {
+        Questao questaoAtiva = listaQuestoes.get(questaoAtual);
+        
+        // Verificar se a resposta está correta
+        if (alternativa.equals(questaoAtiva.getRespostaCorreta())) {
+            // Resposta correta
+            pontuacao += 100;
+            JOptionPane.showMessageDialog(this, "Resposta Correta! Você ganhou 100 pontos.\nPontuação atual: " + pontuacao,
+                    "Acertou!", JOptionPane.INFORMATION_MESSAGE);
+            
+            // Destacar resposta correta em verde
+            marcarBotaoCorreto(alternativa);
+        } else {
+            // Resposta incorreta
+            JOptionPane.showMessageDialog(this, "Resposta Incorreta! A resposta correta era: " + questaoAtiva.getRespostaCorreta(),
+                    "Errou!", JOptionPane.ERROR_MESSAGE);
+            
+            // Destacar resposta correta e incorreta
+            marcarBotaoIncorreto(alternativa);
+            marcarBotaoCorreto((String) questaoAtiva.getRespostaCorreta());
+        }
+        
+        // Verificar se é a última questão
+        if (questaoAtual == totalQuestoes - 1) {
+            // Fim do jogo
+            JOptionPane.showMessageDialog(this, "Fim do jogo! Sua pontuação final: " + pontuacao,
+                    "Fim do Jogo", JOptionPane.INFORMATION_MESSAGE);
+            
+            // Perguntar se deseja jogar novamente
+            int resposta = JOptionPane.showConfirmDialog(this, "Deseja jogar novamente?", 
+                    "Jogar Novamente", JOptionPane.YES_NO_OPTION);
+            
+            if (resposta == JOptionPane.YES_OPTION) {
+                // Reiniciar jogo
+                pontuacao = 0;
+                questaoAtual = 0;
+                carregarQuestao(0);
+            } else {
+                TelaAluno tela = new TelaAluno();
+                tela.setVisible(true);
+                this.dispose();
+            }
+        } else {
+            // Passar para próxima questão após um tempo
+            Thread thread = new Thread(() -> {
+                try {
+                    Thread.sleep(2000); // Aguardar 2 segundos
+                    carregarQuestao(questaoAtual + 1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            });
+            thread.start();
+        }
+    }
+    
+     // Métodos para marcar os botões com cores
+    private void resetarCoresBotoes() {
+        alternativaAButton.setBackground(null);
+        alternativaBButton.setBackground(null);
+        alternativaCButton.setBackground(null);
+        alternativaDButton.setBackground(null);
+        
+        alternativaAButton.setEnabled(true);
+        alternativaBButton.setEnabled(true);
+        alternativaCButton.setEnabled(true);
+        alternativaDButton.setEnabled(true);
+    }
+    
+    private void marcarBotaoCorreto(String alternativa) {
+        switch (alternativa) {
+            case "A":
+                alternativaAButton.setBackground(new Color(0, 200, 0)); // Verde
+                break;
+            case "B":
+                alternativaBButton.setBackground(new Color(0, 200, 0));
+                break;
+            case "C":
+                alternativaCButton.setBackground(new Color(0, 200, 0));
+                break;
+            case "D":
+                alternativaDButton.setBackground(new Color(0, 200, 0));
+                break;
+        }
+        
+        // Desabilitar botões após resposta
+        alternativaAButton.setEnabled(false);
+        alternativaBButton.setEnabled(false);
+        alternativaCButton.setEnabled(false);
+        alternativaDButton.setEnabled(false);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,6 +173,8 @@ public class TelaJogo extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         enunciadoTextField = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtpergunta = new javax.swing.JTextArea();
         alternativaAButton = new javax.swing.JButton();
         alternativaBButton = new javax.swing.JButton();
         alternativaCButton = new javax.swing.JButton();
@@ -40,8 +185,7 @@ public class TelaJogo extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        txtPergunta = new javax.swing.JTextField();
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
@@ -55,30 +199,32 @@ public class TelaJogo extends javax.swing.JFrame {
             }
         });
 
+        txtpergunta.setColumns(20);
+        txtpergunta.setLineWrap(true);
+        txtpergunta.setRows(5);
+        txtpergunta.setWrapStyleWord(true);
+        jScrollPane2.setViewportView(txtpergunta);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        alternativaAButton.setText("jButton1");
         alternativaAButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 alternativaAButtonActionPerformed(evt);
             }
         });
 
-        alternativaBButton.setText("jButton2");
         alternativaBButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 alternativaBButtonActionPerformed(evt);
             }
         });
 
-        alternativaCButton.setText("jButton3");
         alternativaCButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 alternativaCButtonActionPerformed(evt);
             }
         });
 
-        alternativaDButton.setText("jButton4");
         alternativaDButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 alternativaDButtonActionPerformed(evt);
@@ -107,15 +253,19 @@ public class TelaJogo extends javax.swing.JFrame {
 
         jLabel6.setText("C:");
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        txtPergunta.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtPergunta.setEnabled(false);
+        txtPergunta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPerguntaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
@@ -127,24 +277,24 @@ public class TelaJogo extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(sairButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
                         .addComponent(dicasButton))
                     .addComponent(alternativaCButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(alternativaDButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(alternativaBButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(alternativaAButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(76, 76, 76))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(111, 111, 111)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txtPergunta, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(102, 102, 102))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(16, 16, 16)
+                .addComponent(txtPergunta, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(alternativaAButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
@@ -190,20 +340,28 @@ public class TelaJogo extends javax.swing.JFrame {
 
     private void alternativaDButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaDButtonActionPerformed
         // TODO add your handling code here:
+        verificarResposta("D");
     }//GEN-LAST:event_alternativaDButtonActionPerformed
 
     private void alternativaCButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaCButtonActionPerformed
         // TODO add your handling code here:
+         verificarResposta("C");
     }//GEN-LAST:event_alternativaCButtonActionPerformed
 
     private void alternativaBButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaBButtonActionPerformed
         // TODO add your handling code here:
+        verificarResposta("B");
     }//GEN-LAST:event_alternativaBButtonActionPerformed
 
     private void alternativaAButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaAButtonActionPerformed
         // TODO add your handling code here:
-        
+        verificarResposta("A");
     }//GEN-LAST:event_alternativaAButtonActionPerformed
+
+    private void txtPerguntaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPerguntaActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtPerguntaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,7 +413,12 @@ public class TelaJogo extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JButton sairButton;
+    private javax.swing.JTextField txtPergunta;
+    private javax.swing.JTextArea txtpergunta;
     // End of variables declaration//GEN-END:variables
+
+    private void marcarBotaoIncorreto(String alternativa) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

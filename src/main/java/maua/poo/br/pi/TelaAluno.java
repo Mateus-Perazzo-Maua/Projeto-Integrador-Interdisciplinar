@@ -102,7 +102,9 @@ public class TelaAluno extends javax.swing.JFrame {
 
     private void sairButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairButtonActionPerformed
         // TODO add your handling code here:
-      
+        TelaPi tela = new TelaPi();
+        tela.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_sairButtonActionPerformed
 
     private void jogarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jogarButtonActionPerformed

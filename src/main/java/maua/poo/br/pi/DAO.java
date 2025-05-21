@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -130,7 +131,113 @@ public class DAO {
         return false;
     }
     }    
-
+    
+public class QuestaoDAO {
+    
+    private static Connection conexao = null;
+    
+    // Método para buscar a primeira questão (para teste inicial)
+    public static Questao buscarPrimeiraQuestao() throws Exception {
+        Questao questao = null;
+        
+        try {
+            conexao = ConexaoBD.obterConexao();
+            String sql = "SELECT * FROM questoes LIMIT 1";
+            
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            
+            if (rs.next()) {
+                questao = new Questao();
+                questao.setId(rs.getInt("id"));
+                questao.setEnunciado(rs.getString("enunciado"));
+                questao.setAlternativaA(rs.getString("alternativaA"));
+                questao.setAlternativaB(rs.getString("alternativaB"));
+                questao.setAlternativaC(rs.getString("alternativaC"));
+                questao.setAlternativaD(rs.getString("alternativaD"));
+                questao.setCorreta(rs.getString("correta"));
+            }
+            
+            rs.close();
+            stmt.close();
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar questão: " + e.getMessage(), 
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        return questao;
+    }
+    
+    // Método para buscar todas as questões
+    public static List<Questao> buscarTodasQuestoes() throws Exception {
+        List<Questao> questoes = new ArrayList<>();
+        
+        try {
+            conexao = ConexaoBD.obterConexao();
+            String sql = "SELECT * FROM questoes";
+            
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()) {
+                Questao questao = new Questao();
+                questao.setId(rs.getInt("id"));
+                questao.setEnunciado(rs.getString("enunciado"));
+                questao.setAlternativaA(rs.getString("alternativaA"));
+                questao.setAlternativaB(rs.getString("alternativaB"));
+                questao.setAlternativaC(rs.getString("alternativaC"));
+                questao.setAlternativaD(rs.getString("alternativaD"));
+                questao.setCorreta(rs.getString("correta"));
+                
+                questoes.add(questao);
+            }
+            
+            rs.close();
+            stmt.close();
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar questões: " + e.getMessage(), 
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        return questoes;
+    }
+    
+    // Método para buscar questão por ID
+    public static Questao buscarQuestaoPorId(int id) throws Exception {
+        Questao questao = null;
+        
+        try {
+            conexao = ConexaoBD.obterConexao();
+            String sql = "SELECT * FROM questoes WHERE id = ?";
+            
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
+            
+            if (rs.next()) {
+                questao = new Questao();
+                questao.setId(rs.getInt("id"));
+                questao.setEnunciado(rs.getString("enunciado"));
+                questao.setAlternativaA(rs.getString("alternativaA"));
+                questao.setAlternativaB(rs.getString("alternativaB"));
+                questao.setAlternativaC(rs.getString("alternativaC"));
+                questao.setAlternativaD(rs.getString("alternativaD"));
+                questao.setCorreta(rs.getString("correta"));
+            }
+            
+            rs.close();
+            stmt.close();
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar questão: " + e.getMessage(), 
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        return questao;
+    }
+    }
 }
    
 
