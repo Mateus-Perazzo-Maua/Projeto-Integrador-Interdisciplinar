@@ -4,8 +4,14 @@
  */
 package maua.poo.br.pi;
 
+import java.util.Collections;
 import java.awt.Color;
+import java.awt.Font;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import maua.poo.br.pi.DAO.QuestaoDAO;
 
@@ -14,37 +20,63 @@ import maua.poo.br.pi.DAO.QuestaoDAO;
  * @author 25.00404-5
  */
 public class TelaJogo extends javax.swing.JFrame {
-
+    
+    private Map<String, JButton> botoesResposta;
+    private boolean respostaProcessada = false;
     private List<Questao> listaQuestoes;
     private int questaoAtual = 0;
     private int pontuacao = 0;
     private int totalQuestoes = 0;
+    private int indiceAtual = 0;
+    private javax.swing.JPanel painelQuestoes;
+
     /**
      * Creates new form TelaJogo
      */
     public TelaJogo() {
         initComponents();
+        botoesResposta = new HashMap<>();
+        botoesResposta.put("A", alternativaAButton);
+        botoesResposta.put("B", alternativaBButton);
+        botoesResposta.put("C", alternativaCButton);
+        botoesResposta.put("D", alternativaDButton);
         iniciarJogo();
  }
 
      private void iniciarJogo() {
     try {
-        // Carregar todas as questões do banco
-        listaQuestoes = QuestaoDAO.buscarTodasQuestoes();
-        totalQuestoes = listaQuestoes.size();
+        respostaProcessada = false;
+        // Busca as questões por dificuldade
+        List<Questao> questoesF = DAO.buscarQuestoesPorDificuldade("facil");
+        List<Questao> questoesM = DAO.buscarQuestoesPorDificuldade("medio");
+        List<Questao> questoesD = DAO.buscarQuestoesPorDificuldade("dificil");
 
-        if (totalQuestoes > 0) {
-            // Exibir a primeira questão
-            carregarQuestao(0);
-        } else {
-            JOptionPane.showMessageDialog(this, "Não há questões cadastradas no banco de dados!",
-                                          "Erro", JOptionPane.ERROR_MESSAGE);
-        }
+        // Embaralha
+        Collections.shuffle(questoesF);
+        Collections.shuffle(questoesM);
+        Collections.shuffle(questoesD);
+
+        // Define quantas questões de cada dificuldade
+        int qtdF = 3, qtdM = 3, qtdD = 3;
+
+        listaQuestoes= new ArrayList<>();
+        listaQuestoes.addAll(questoesF.subList(0, Math.min(qtdF, questoesF.size())));
+        listaQuestoes.addAll(questoesM.subList(0, Math.min(qtdM, questoesM.size())));
+        listaQuestoes.addAll(questoesD.subList(0, Math.min(qtdD, questoesD.size())));
+
+        totalQuestoes = listaQuestoes.size();
+        indiceAtual = 0;
+        questaoAtual = 0;
+        mostrarProximaQuestao(); // Inicia o jogo com a primeira questão
     } catch (Exception e) {
         JOptionPane.showMessageDialog(this, "Erro ao iniciar o jogo: " + e.getMessage(),
                                       "Erro", JOptionPane.ERROR_MESSAGE);
     }
+    
+    respostaProcessada = false;
+    indiceAtual = 0;
 }
+
     
     
     // Método para carregar uma questão específica
@@ -63,67 +95,61 @@ public class TelaJogo extends javax.swing.JFrame {
             resetarCoresBotoes();
             
             // Atualizar questão atual
-            questaoAtual = indice;
-        }
+            
+            
+        
     }
-    
+    }    
     // Método para verificar resposta selecionada
-    private void verificarResposta(String alternativa) {
-        Questao questaoAtiva = listaQuestoes.get(questaoAtual);
-        
-        // Verificar se a resposta está correta
-        if (alternativa.equals(questaoAtiva.getRespostaCorreta())) {
-            // Resposta correta
-            pontuacao += 100;
-            JOptionPane.showMessageDialog(this, "Resposta Correta! Você ganhou 100 pontos.\nPontuação atual: " + pontuacao,
-                    "Acertou!", JOptionPane.INFORMATION_MESSAGE);
-            
-            // Destacar resposta correta em verde
-            marcarBotaoCorreto(alternativa);
-        } else {
-            // Resposta incorreta
-            JOptionPane.showMessageDialog(this, "Resposta Incorreta! A resposta correta era: " + questaoAtiva.getRespostaCorreta(),
-                    "Errou!", JOptionPane.ERROR_MESSAGE);
-            
-            // Destacar resposta correta e incorreta
-            marcarBotaoIncorreto(alternativa);
-            marcarBotaoCorreto((String) questaoAtiva.getRespostaCorreta());
+private void verificarResposta(String respostaSelecionada) {
+    if (!respostaProcessada) {
+        respostaProcessada = true;
+
+        Questao questao = listaQuestoes.get(indiceAtual);
+        String respostaCorreta = questao.getRespostaCorreta();
+
+        JButton botaoCorreto = botoesResposta.get(respostaCorreta);
+        if (botaoCorreto != null) {
+            botaoCorreto.setBackground(Color.GREEN);
         }
-        
-        // Verificar se é a última questão
-        if (questaoAtual == totalQuestoes - 1) {
-            // Fim do jogo
-            JOptionPane.showMessageDialog(this, "Fim do jogo! Sua pontuação final: " + pontuacao,
-                    "Fim do Jogo", JOptionPane.INFORMATION_MESSAGE);
-            
-            // Perguntar se deseja jogar novamente
-            int resposta = JOptionPane.showConfirmDialog(this, "Deseja jogar novamente?", 
-                    "Jogar Novamente", JOptionPane.YES_NO_OPTION);
-            
-            if (resposta == JOptionPane.YES_OPTION) {
-                // Reiniciar jogo
-                pontuacao = 0;
-                questaoAtual = 0;
-                carregarQuestao(0);
+
+        if (respostaSelecionada.equals(respostaCorreta)) {
+            pontuacao++;
+
+            if (indiceAtual == totalQuestoes - 1) {
+                // Jogador chegou até o fim com todas certas!
+                JOptionPane.showMessageDialog(this, "Parabéns! Você terminou o jogo!\nSua pontuação: " + pontuacao,
+                        "Fim do Jogo", JOptionPane.INFORMATION_MESSAGE);
+
+                int resposta = JOptionPane.showConfirmDialog(this, "Deseja jogar novamente?",
+                        "Jogar Novamente", JOptionPane.YES_NO_OPTION);
+
+                if (resposta == JOptionPane.YES_OPTION) {
+                    iniciarJogo(); // Recomeça tudo
+                } else {
+                    TelaAluno tela = new TelaAluno();
+                    tela.setVisible(true);
+                    this.dispose();
+                }
             } else {
-                TelaAluno tela = new TelaAluno();
-                tela.setVisible(true);
-                this.dispose();
+                // Espera 1 segundo antes de mostrar a próxima questão
+                javax.swing.Timer timer = new javax.swing.Timer(1000, e -> {
+                    respostaProcessada = false;
+                    mostrarProximaQuestao();
+                });
+                timer.setRepeats(false);
+                timer.start();
             }
         } else {
-            // Passar para próxima questão após um tempo
-            Thread thread = new Thread(() -> {
-                try {
-                    Thread.sleep(2000); // Aguardar 2 segundos
-                    carregarQuestao(questaoAtual + 1);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            });
-            thread.start();
+            // Errou a questão → volta ao início
+            JOptionPane.showMessageDialog(this, "Resposta incorreta!\nVocê deve começar novamente.",
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+
+            iniciarJogo(); // Reinicia o jogo
         }
     }
-    
+}
+
      // Métodos para marcar os botões com cores
     private void resetarCoresBotoes() {
         alternativaAButton.setBackground(null);
@@ -417,8 +443,29 @@ public class TelaJogo extends javax.swing.JFrame {
     private javax.swing.JTextField txtPergunta;
     private javax.swing.JTextArea txtpergunta;
     // End of variables declaration//GEN-END:variables
-
+    
     private void marcarBotaoIncorreto(String alternativa) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        switch (alternativa) {
+            case "A":
+                alternativaAButton.setBackground(new Color(255, 0, 0)); // Vermelho
+                break;
+            case "B":
+                alternativaBButton.setBackground(new Color(255, 0, 0));
+                break;
+            case "C":
+                alternativaCButton.setBackground(new Color(255, 0, 0));
+                break;
+            case "D":
+                alternativaDButton.setBackground(new Color(255, 0, 0));
+                break;
     }
+}
+    
+    private void mostrarProximaQuestao() {
+    indiceAtual++;
+    if (indiceAtual < totalQuestoes) {
+        carregarQuestao(indiceAtual);
+    }
+}
+
 }

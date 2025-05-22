@@ -238,6 +238,44 @@ public class QuestaoDAO {
         return questao;
     }
     }
+
+    public static List<Questao> buscarQuestoesPorDificuldade(String dificuldade) throws Exception {
+        List<Questao> lista = new ArrayList<>();
+    
+        try {
+            Connection conexao = ConexaoBD.obterConexao();
+            String sql = "SELECT * FROM questoes WHERE dificuldade = ?";
+        
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            stmt.setString(1, dificuldade);
+            ResultSet rs = stmt.executeQuery();
+        
+            while (rs.next()) {
+                Questao questao = new Questao();
+                questao.setId(rs.getInt("id"));
+                questao.setEnunciado(rs.getString("enunciado"));
+                questao.setAlternativaA(rs.getString("alternativaA"));
+                questao.setAlternativaB(rs.getString("alternativaB"));
+                questao.setAlternativaC(rs.getString("alternativaC"));
+                questao.setAlternativaD(rs.getString("alternativaD"));
+                questao.setCorreta(rs.getString("correta"));
+                questao.setDificuldade(rs.getString("dificuldade")); // <- importante
+
+                lista.add(questao);
+            }
+
+            rs.close();
+            stmt.close();
+        
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao buscar questões por dificuldade: " + e.getMessage(), 
+                    "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+
+        return lista;
+    }
+
+
 }
    
 

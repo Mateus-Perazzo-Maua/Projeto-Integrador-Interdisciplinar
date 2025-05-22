@@ -1,15 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package maua.poo.br.pi;
 
-/**
- *
- * @author 25.01392-1
- */
+import java.util.List;
+
 public class Questao {
     private int id;
+    private String dificuldade;
     private String enunciado;
     private String alternativaA;
     private String alternativaB;
@@ -17,7 +12,8 @@ public class Questao {
     private String alternativaD;
     private String correta;
 
-    // Construtor
+    public Questao() {}
+
     public Questao(int id, String enunciado, String alternativaA, String alternativaB, String alternativaC, String alternativaD, String correta) {
         this.id = id;
         this.enunciado = enunciado;
@@ -27,18 +23,21 @@ public class Questao {
         this.alternativaD = alternativaD;
         this.correta = correta;
     }
-    
-    // Getters e Setters
-    public Questao(){
-        
-    }
-    
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getDificuldade() {
+        return dificuldade;
+    }
+
+    public void setDificuldade(String dificuldade) {
+        this.dificuldade = dificuldade;
     }
 
     public String getEnunciado() {
@@ -89,20 +88,15 @@ public class Questao {
         this.correta = correta;
     }
 
-    Object getRespostaCorreta() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String getRespostaCorreta() {
+        return correta;
     }
 
-    void setRespostaCorreta(String c) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void setRespostaCorreta(String c) {
+        this.correta = c;
     }
 
-    void setPergunta(String qual_a_capital_do_Brasil) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    void setDificuldade(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<String> getOpcoes() {
+        return List.of(alternativaA, alternativaB, alternativaC, alternativaD);
     }
 }
-
