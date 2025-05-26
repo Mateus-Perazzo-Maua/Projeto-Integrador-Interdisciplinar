@@ -14,6 +14,7 @@ import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import maua.poo.br.pi.DAO.QuestaoDAO;
+import java.util.AbstractMap;
 
 /**
  *
@@ -28,7 +29,7 @@ public class TelaJogo extends javax.swing.JFrame {
     private int pontuacao = 0;
     private int totalQuestoes = 0;
     private int indiceAtual = 0;
-    private javax.swing.JPanel painelQuestoes;
+    private javax.swing.JButton botaoCorreto;
 
     /**
      * Creates new form TelaJogo
@@ -81,25 +82,34 @@ public class TelaJogo extends javax.swing.JFrame {
     
     // Método para carregar uma questão específica
     private void carregarQuestao(int indice) {
-        if (indice < listaQuestoes.size()) {
-            Questao q = listaQuestoes.get(indice);
-            
-            // Exibir enunciado e alternativas
-            txtPergunta.setText(q.getEnunciado());
-            alternativaAButton.setText(q.getAlternativaA());
-            alternativaBButton.setText(q.getAlternativaB());
-            alternativaCButton.setText(q.getAlternativaC());
-            alternativaDButton.setText(q.getAlternativaD());
-            
-            // Resetar cores dos botões
-            resetarCoresBotoes();
-            
-            // Atualizar questão atual
-            
-            
-        
+    if (indice < listaQuestoes.size()) {
+        Questao q = listaQuestoes.get(indice);
+
+        txtPergunta.setText(q.getEnunciado());
+        resetarCoresBotoes();
+
+        // Define diretamente os textos das alternativas, na ordem original
+        alternativaAButton.setText(q.getAlternativaA());
+        alternativaBButton.setText(q.getAlternativaB());
+        alternativaCButton.setText(q.getAlternativaC());
+        alternativaDButton.setText(q.getAlternativaD());
+
+        // Atualiza qual botão contém a resposta correta com base na letra
+        // Ex: se q.getRespostaCorreta() == "C", o botão alternativaCButton é o correto
+        for (Map.Entry<String, JButton> entry : botoesResposta.entrySet()) {
+            String letra = entry.getKey();
+            JButton botao = entry.getValue();
+
+            if (letra.equals(q.getRespostaCorreta())) {
+                // Garante que a resposta correta está associada ao botão certo
+                q.setRespostaCorreta(letra);
+                break;
+            }
+        }
     }
-    }    
+}
+
+
     // Método para verificar resposta selecionada
 private void verificarResposta(String respostaSelecionada) {
     if (!respostaProcessada) {
@@ -142,6 +152,8 @@ private void verificarResposta(String respostaSelecionada) {
             }
         } else {
             // Errou a questão → volta ao início
+            marcarBotaoIncorreto(respostaSelecionada);
+            
             JOptionPane.showMessageDialog(this, "Resposta incorreta!\nVocê deve começar novamente.",
                     "Erro", JOptionPane.ERROR_MESSAGE);
 
@@ -444,27 +456,27 @@ private void verificarResposta(String respostaSelecionada) {
     private javax.swing.JTextArea txtpergunta;
     // End of variables declaration//GEN-END:variables
     
-    private void marcarBotaoIncorreto(String alternativa) {
-        switch (alternativa) {
-            case "A":
-                alternativaAButton.setBackground(new Color(255, 0, 0)); // Vermelho
-                break;
-            case "B":
-                alternativaBButton.setBackground(new Color(255, 0, 0));
-                break;
-            case "C":
-                alternativaCButton.setBackground(new Color(255, 0, 0));
-                break;
-            case "D":
-                alternativaDButton.setBackground(new Color(255, 0, 0));
-                break;
+private void marcarBotaoIncorreto(String alternativa) {
+    switch (alternativa) {
+        case "A":
+            alternativaAButton.setBackground(Color.RED); // Vermelho
+            break;
+        case "B":
+            alternativaBButton.setBackground(Color.RED);
+            break;
+        case "C":
+            alternativaCButton.setBackground(Color.RED);
+            break;
+        case "D":
+            alternativaDButton.setBackground(Color.RED);
+            break;
     }
 }
     
     private void mostrarProximaQuestao() {
-    indiceAtual++;
-    if (indiceAtual < totalQuestoes) {
-        carregarQuestao(indiceAtual);
+        if (indiceAtual < totalQuestoes) {
+            carregarQuestao(indiceAtual);
+            indiceAtual++;
     }
 }
 
