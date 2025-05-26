@@ -6,15 +6,14 @@ package maua.poo.br.pi;
 
 import java.util.Collections;
 import java.awt.Color;
-import java.awt.Font;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import maua.poo.br.pi.DAO.QuestaoDAO;
-import java.util.AbstractMap;
+import java.util.Set;
+import java.util.HashSet;
 
 /**
  *
@@ -30,7 +29,7 @@ public class TelaJogo extends javax.swing.JFrame {
     private int totalQuestoes = 0;
     private int indiceAtual = 0;
     private javax.swing.JButton botaoCorreto;
-
+    private Set<Integer> questoesRespondidas = new HashSet<>();
     /**
      * Creates new form TelaJogo
      */
@@ -82,32 +81,40 @@ public class TelaJogo extends javax.swing.JFrame {
     
     // Método para carregar uma questão específica
     private void carregarQuestao(int indice) {
-    if (indice < listaQuestoes.size()) {
-        Questao q = listaQuestoes.get(indice);
+    if (questoesRespondidas.size() == listaQuestoes.size()) {
+        JOptionPane.showMessageDialog(null, "Você respondeu todas as questões!");
+        return;
+    }
 
-        txtPergunta.setText(q.getEnunciado());
-        resetarCoresBotoes();
+    // Pula se a questão já foi usada
+    while (questoesRespondidas.contains(indice)) {
+        indice = (indice + 1) % listaQuestoes.size();
+    }
 
-        // Define diretamente os textos das alternativas, na ordem original
-        alternativaAButton.setText(q.getAlternativaA());
-        alternativaBButton.setText(q.getAlternativaB());
-        alternativaCButton.setText(q.getAlternativaC());
-        alternativaDButton.setText(q.getAlternativaD());
+    questoesRespondidas.add(indice); // Marca como usada
 
-        // Atualiza qual botão contém a resposta correta com base na letra
-        // Ex: se q.getRespostaCorreta() == "C", o botão alternativaCButton é o correto
-        for (Map.Entry<String, JButton> entry : botoesResposta.entrySet()) {
-            String letra = entry.getKey();
-            JButton botao = entry.getValue();
+    Questao q = listaQuestoes.get(indice);
 
-            if (letra.equals(q.getRespostaCorreta())) {
-                // Garante que a resposta correta está associada ao botão certo
-                q.setRespostaCorreta(letra);
-                break;
-            }
+    txtPergunta.setText(q.getEnunciado());
+    resetarCoresBotoes();
+
+    alternativaAButton.setText(q.getAlternativaA());
+    alternativaBButton.setText(q.getAlternativaB());
+    alternativaCButton.setText(q.getAlternativaC());
+    alternativaDButton.setText(q.getAlternativaD());
+
+    // Atualiza a resposta correta com base na letra
+    for (Map.Entry<String, JButton> entry : botoesResposta.entrySet()) {
+        String letra = entry.getKey();
+        JButton botao = entry.getValue();
+
+        if (letra.equals(q.getRespostaCorreta())) {
+            q.setRespostaCorreta(letra);
+            break;
         }
     }
 }
+
 
 
     // Método para verificar resposta selecionada
