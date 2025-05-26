@@ -14,3 +14,4 @@ alternativaC VARCHAR(255), alternativaD VARCHAR(255), correta CHAR(1));
 ALTER TABLE questoes ADD COLUMN dificuldade VARCHAR(10);
 ALTER TABLE questoes ADD COLUMN serie VARCHAR(10);
 SELECT * FROM questoes;
+SELECT * FROM questoes;
