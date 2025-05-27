@@ -69,16 +69,13 @@
               </Group>
               <Component id="dificuldadeCombo" alignment="0" max="32767" attributes="0"/>
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                  <Component id="voltarButton" min="-2" pref="88" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="adicionarQuestaoButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="206" max="-2" attributes="0"/>
-                  <Component id="removerQuestaoButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <Component id="voltarButton" min="-2" pref="130" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                  <Component id="listarQuestaoButton" min="-2" pref="130" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                  <Component id="adicionarQuestaoButton" min="-2" pref="130" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -113,14 +110,13 @@
                   <Component id="altCorretaLabel" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="altCorretaCombo" min="-2" pref="31" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                  <EmptySpace pref="26" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="voltarButton" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                      <Component id="listarQuestaoButton" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                       <Component id="adicionarQuestaoButton" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="removerQuestaoButton" min="-2" pref="31" max="-2" attributes="0"/>
-                  <EmptySpace pref="26" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -234,7 +230,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="adicionarQuestaoButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Adicionar quest&#xe3;o"/>
+            <Property name="text" type="java.lang.String" value="Adicionar Quest&#xe3;o"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="adicionarQuestaoButtonActionPerformed"/>
@@ -289,12 +285,12 @@
             <Property name="text" type="java.lang.String" value="Selecione a s&#xe9;rie"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="removerQuestaoButton">
+        <Component class="javax.swing.JButton" name="listarQuestaoButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="REMOVER QUEST&#xc3;O"/>
+            <Property name="text" type="java.lang.String" value="Listar Quest&#xf5;es"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removerQuestaoButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="listarQuestaoButtonActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

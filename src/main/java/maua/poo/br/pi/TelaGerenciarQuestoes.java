@@ -19,6 +19,7 @@ public class TelaGerenciarQuestoes extends javax.swing.JFrame {
      */
     public TelaGerenciarQuestoes() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -48,7 +49,7 @@ public class TelaGerenciarQuestoes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         serieCombo = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        removerQuestaoButton = new javax.swing.JButton();
+        listarQuestaoButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,7 +82,7 @@ public class TelaGerenciarQuestoes extends javax.swing.JFrame {
 
         altCorretaCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D" }));
 
-        adicionarQuestaoButton.setText("Adicionar questão");
+        adicionarQuestaoButton.setText("Adicionar Questão");
         adicionarQuestaoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 adicionarQuestaoButtonActionPerformed(evt);
@@ -108,10 +109,10 @@ public class TelaGerenciarQuestoes extends javax.swing.JFrame {
 
         jLabel2.setText("Selecione a série");
 
-        removerQuestaoButton.setText("REMOVER QUESTÃO");
-        removerQuestaoButton.addActionListener(new java.awt.event.ActionListener() {
+        listarQuestaoButton.setText("Listar Questões");
+        listarQuestaoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removerQuestaoButtonActionPerformed(evt);
+                listarQuestaoButtonActionPerformed(evt);
             }
         });
 
@@ -137,15 +138,13 @@ public class TelaGerenciarQuestoes extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(dificuldadeCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(voltarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(adicionarQuestaoButton)
-                .addGap(75, 75, 75))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(206, 206, 206)
-                .addComponent(removerQuestaoButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(voltarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addComponent(listarQuestaoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(adicionarQuestaoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,13 +177,12 @@ public class TelaGerenciarQuestoes extends javax.swing.JFrame {
                 .addComponent(altCorretaLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(altCorretaCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(voltarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(listarQuestaoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(adicionarQuestaoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(removerQuestaoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -218,7 +216,7 @@ public class TelaGerenciarQuestoes extends javax.swing.JFrame {
 
         if (enunciado.isEmpty() || a.isEmpty() || b.isEmpty() || c.isEmpty() || d.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Preencha todos os campos.");
-            return; // tudo certo aqui
+            return;
         }
 
         DAO dao = new DAO();
@@ -255,10 +253,10 @@ public class TelaGerenciarQuestoes extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_dificuldadeComboActionPerformed
 
-    private void removerQuestaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerQuestaoButtonActionPerformed
+    private void listarQuestaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarQuestaoButtonActionPerformed
         // TODO add your handling code here:
         new TelaRemoverQuestão().setVisible(true);
-    }//GEN-LAST:event_removerQuestaoButtonActionPerformed
+    }//GEN-LAST:event_listarQuestaoButtonActionPerformed
 
     private void materiaComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materiaComboActionPerformed
         // TODO add your handling code here:
@@ -315,9 +313,9 @@ public class TelaGerenciarQuestoes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton listarQuestaoButton;
     private javax.swing.JComboBox<String> materiaCombo;
     private javax.swing.JLabel materiaLabel;
-    private javax.swing.JButton removerQuestaoButton;
     private javax.swing.JComboBox<String> serieCombo;
     private javax.swing.JButton voltarButton;
     // End of variables declaration//GEN-END:variables
