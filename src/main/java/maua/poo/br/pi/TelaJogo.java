@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import java.util.Set;
 import java.util.HashSet;
+import maua.poo.br.pi.QuestaoDAO;
 
 /**
  *
@@ -30,36 +31,41 @@ public class TelaJogo extends javax.swing.JFrame {
     private int indiceAtual = 0;
     private javax.swing.JButton botaoCorreto;
     private Set<Integer> questoesRespondidas = new HashSet<>();
+    private List<Questao> questoes;
+    private String serieSelecionada;
     /**
      * Creates new form TelaJogo
      */
-    public TelaJogo() {
+    
+    public TelaJogo(String serieSelecionada) {
         initComponents();
+        this.serieSelecionada = serieSelecionada;
         botoesResposta = new HashMap<>();
         botoesResposta.put("A", alternativaAButton);
         botoesResposta.put("B", alternativaBButton);
         botoesResposta.put("C", alternativaCButton);
         botoesResposta.put("D", alternativaDButton);
         iniciarJogo();
- }
+    }
+
 
      private void iniciarJogo() {
     try {
         respostaProcessada = false;
-        // Busca as questões por dificuldade
-        List<Questao> questoesF = DAO.buscarQuestoesPorDificuldade("facil");
-        List<Questao> questoesM = DAO.buscarQuestoesPorDificuldade("medio");
-        List<Questao> questoesD = DAO.buscarQuestoesPorDificuldade("dificil");
 
-        // Embaralha
+        QuestaoDAO questaoDAO = new QuestaoDAO();
+        
+        List<Questao> questoesF = questaoDAO.buscarQuestoesPorDificuldadeESerie("facil", serieSelecionada);
+        List<Questao> questoesM = questaoDAO.buscarQuestoesPorDificuldadeESerie("medio", serieSelecionada);
+        List<Questao> questoesD = questaoDAO.buscarQuestoesPorDificuldadeESerie("dificil", serieSelecionada);
+
         Collections.shuffle(questoesF);
         Collections.shuffle(questoesM);
         Collections.shuffle(questoesD);
 
-        // Define quantas questões de cada dificuldade
-        int qtdF = 3, qtdM = 3, qtdD = 3;
+        int qtdF = 4, qtdM = 4, qtdD = 4;
 
-        listaQuestoes= new ArrayList<>();
+        listaQuestoes = new ArrayList<>();
         listaQuestoes.addAll(questoesF.subList(0, Math.min(qtdF, questoesF.size())));
         listaQuestoes.addAll(questoesM.subList(0, Math.min(qtdM, questoesM.size())));
         listaQuestoes.addAll(questoesD.subList(0, Math.min(qtdD, questoesD.size())));
@@ -67,15 +73,18 @@ public class TelaJogo extends javax.swing.JFrame {
         totalQuestoes = listaQuestoes.size();
         indiceAtual = 0;
         questaoAtual = 0;
-        mostrarProximaQuestao(); // Inicia o jogo com a primeira questão
+        mostrarProximaQuestao();
+
     } catch (Exception e) {
         JOptionPane.showMessageDialog(this, "Erro ao iniciar o jogo: " + e.getMessage(),
-                                      "Erro", JOptionPane.ERROR_MESSAGE);
+            "Erro", JOptionPane.ERROR_MESSAGE);
     }
-    
     respostaProcessada = false;
     indiceAtual = 0;
 }
+    
+
+
 
     
     
@@ -411,37 +420,7 @@ private void verificarResposta(String respostaSelecionada) {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaJogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaJogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaJogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaJogo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaJogo().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton alternativaAButton;

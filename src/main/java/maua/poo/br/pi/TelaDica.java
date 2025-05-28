@@ -91,9 +91,6 @@ public class TelaDica extends javax.swing.JFrame {
 
     private void voltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarButtonActionPerformed
         // TODO add your handling code here:
-        TelaJogo tela = new TelaJogo();
-        tela.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_voltarButtonActionPerformed
 
     /**

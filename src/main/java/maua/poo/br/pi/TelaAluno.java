@@ -4,8 +4,10 @@
  */
 package maua.poo.br.pi;
 
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
+import maua.poo.br.pi.QuestaoDAO;
 
 /**
  *
@@ -33,7 +35,7 @@ public class TelaAluno extends javax.swing.JFrame {
         jogarButton = new javax.swing.JButton();
         sairButton = new javax.swing.JButton();
         estatisticasButton = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboSerie = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -56,8 +58,13 @@ public class TelaAluno extends javax.swing.JFrame {
 
         estatisticasButton.setText("Estatísticas");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Primeiro", "Segundo", "Terceiro" }));
-        jComboBox1.setBorder(null);
+        comboSerie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Primeiro", "Segundo", "Terceiro" }));
+        comboSerie.setBorder(null);
+        comboSerie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboSerieActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Selecione sua série");
 
@@ -69,7 +76,7 @@ public class TelaAluno extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jogarButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(estatisticasButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(comboSerie, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -87,7 +94,7 @@ public class TelaAluno extends javax.swing.JFrame {
                 .addGap(4, 4, 4)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(comboSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(estatisticasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -124,11 +131,16 @@ public class TelaAluno extends javax.swing.JFrame {
 
     private void jogarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jogarButtonActionPerformed
         // TODO add your handling code here:
-        TelaJogo tela = new TelaJogo();
-        tela.setVisible(true);
-        ((JFrame) SwingUtilities.getWindowAncestor(jogarButton)).dispose();
+        String serieSelecionada = (String) comboSerie.getSelectedItem();
+        
+        TelaJogo telaJogo = new TelaJogo(serieSelecionada);
+        telaJogo.setVisible(true);
     }//GEN-LAST:event_jogarButtonActionPerformed
 
+    private void comboSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSerieActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboSerieActionPerformed
+    
     /**
      * @param args the command line arguments
      */
@@ -166,8 +178,8 @@ public class TelaAluno extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> comboSerie;
     private javax.swing.JButton estatisticasButton;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jogarButton;

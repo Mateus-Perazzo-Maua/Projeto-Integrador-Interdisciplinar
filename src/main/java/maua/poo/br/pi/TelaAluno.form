@@ -57,7 +57,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jogarButton" alignment="1" max="32767" attributes="0"/>
                       <Component id="estatisticasButton" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jComboBox1" alignment="1" max="32767" attributes="0"/>
+                      <Component id="comboSerie" alignment="1" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
@@ -81,7 +81,7 @@
                   <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jComboBox1" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="comboSerie" min="-2" pref="35" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="estatisticasButton" min="-2" pref="36" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -113,7 +113,7 @@
             <Property name="text" type="java.lang.String" value="Estat&#xed;sticas"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="comboSerie">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="3">
@@ -126,6 +126,9 @@
               <Border info="null"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboSerieActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>

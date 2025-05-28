@@ -99,4 +99,14 @@ public class Questao {
     public List<String> getOpcoes() {
         return List.of(alternativaA, alternativaB, alternativaC, alternativaD);
     }
+    
+    private String serie;
+
+    public String getSerie() {
+        return serie;
+    }
+
+    public void setSerie(String serie) {
+        this.serie = serie;
+    }
 }
