@@ -28,6 +28,7 @@ public class TelaJogo extends javax.swing.JFrame {
     private int questaoAtual = 0;
     private int pontuacao = 0;
     private int totalQuestoes = 0;
+    private int indiceQuestaoExibida = 0;
     private int indiceAtual = 0;
     private javax.swing.JButton botaoCorreto;
     private Set<Integer> questoesRespondidas = new HashSet<>();
@@ -52,7 +53,11 @@ public class TelaJogo extends javax.swing.JFrame {
      private void iniciarJogo() {
     try {
         respostaProcessada = false;
-
+        pontuacao = 0;
+        indiceAtual = 0;
+        questaoAtual = 0;
+        questoesRespondidas.clear();
+        
         QuestaoDAO questaoDAO = new QuestaoDAO();
         
         List<Questao> questoesF = questaoDAO.buscarQuestoesPorDificuldadeESerie("facil", serieSelecionada);
@@ -69,16 +74,17 @@ public class TelaJogo extends javax.swing.JFrame {
         listaQuestoes.addAll(questoesD.subList(0, Math.min(qtdD, questoesD.size())));
 
         totalQuestoes = listaQuestoes.size();
-        indiceAtual = 0;
         questaoAtual = 0;
-        mostrarProximaQuestao();
+        
+        // Embaralha as questões para ordem aleatória
+            Collections.shuffle(listaQuestoes);
+        
+            mostrarProximaQuestao();
 
     } catch (Exception e) {
         JOptionPane.showMessageDialog(this, "Erro ao iniciar o jogo: " + e.getMessage(),
             "Erro", JOptionPane.ERROR_MESSAGE);
     }
-    respostaProcessada = false;
-    indiceAtual = 0;
 }
     
 
@@ -88,92 +94,77 @@ public class TelaJogo extends javax.swing.JFrame {
     
     // Método para carregar uma questão específica
     private void carregarQuestao(int indice) {
-    if (questoesRespondidas.size() == listaQuestoes.size()) {
-        JOptionPane.showMessageDialog(null, "Você respondeu todas as questões!");
-        return;
-    }
-
-    // Pula se a questão já foi usada
-    while (questoesRespondidas.contains(indice)) {
-        indice = (indice + 1) % listaQuestoes.size();
-    }
-
-    questoesRespondidas.add(indice); // Marca como usada
-
-    Questao q = listaQuestoes.get(indice);
-
-    txtPergunta.setText(q.getEnunciado());
-    resetarCoresBotoes();
-
-    alternativaAButton.setText(q.getAlternativaA());
-    alternativaBButton.setText(q.getAlternativaB());
-    alternativaCButton.setText(q.getAlternativaC());
-    alternativaDButton.setText(q.getAlternativaD());
-
-    // Atualiza a resposta correta com base na letra
-    for (Map.Entry<String, JButton> entry : botoesResposta.entrySet()) {
-        String letra = entry.getKey();
-        JButton botao = entry.getValue();
-
-        if (letra.equals(q.getRespostaCorreta())) {
-            q.setRespostaCorreta(letra);
-            break;
+    if (indice >= listaQuestoes.size()) {
+            JOptionPane.showMessageDialog(null, "Você respondeu todas as questões!");
+            return;
         }
+
+        Questao q = listaQuestoes.get(indice);
+
+        txtPergunta.setText(q.getEnunciado());
+        resetarCoresBotoes();
+
+        alternativaAButton.setText(q.getAlternativaA());
+        alternativaBButton.setText(q.getAlternativaB());
+        alternativaCButton.setText(q.getAlternativaC());
+        alternativaDButton.setText(q.getAlternativaD());
     }
-}
+    
 
 
 
     // Método para verificar resposta selecionada
 private void verificarResposta(String respostaSelecionada) {
     if (!respostaProcessada) {
-        respostaProcessada = true;
+            respostaProcessada = true;
 
-        Questao questao = listaQuestoes.get(indiceAtual);
-        String respostaCorreta = questao.getRespostaCorreta();
+            // Use o índice da questão atualmente exibida
+            Questao questao = listaQuestoes.get(indiceQuestaoExibida);
+            String respostaCorreta = questao.getRespostaCorreta();
 
-        JButton botaoCorreto = botoesResposta.get(respostaCorreta);
-        if (botaoCorreto != null) {
-            botaoCorreto.setBackground(Color.GREEN);
-        }
+            JButton botaoCorreto = botoesResposta.get(respostaCorreta);
+            if (botaoCorreto != null) {
+                botaoCorreto.setBackground(Color.GREEN);
+            }
 
-        if (respostaSelecionada.equals(respostaCorreta)) {
-            pontuacao++;
+            if (respostaSelecionada.equals(respostaCorreta)) {
+                pontuacao++;
+                questaoAtual++; // Avança para a próxima questão
 
-            if (indiceAtual == totalQuestoes - 1) {
-                // Jogador chegou até o fim com todas certas!
-                JOptionPane.showMessageDialog(this, "Parabéns! Você terminou o jogo!\nSua pontuação: " + pontuacao,
-                        "Fim do Jogo", JOptionPane.INFORMATION_MESSAGE);
+                if (questaoAtual >= totalQuestoes) {
+                    // Jogador chegou até o fim com todas certas!
+                    JOptionPane.showMessageDialog(this, "Parabéns! Você terminou o jogo!\nSua pontuação: " + pontuacao,
+                            "Fim do Jogo", JOptionPane.INFORMATION_MESSAGE);
 
-                int resposta = JOptionPane.showConfirmDialog(this, "Deseja jogar novamente?",
-                        "Jogar Novamente", JOptionPane.YES_NO_OPTION);
+                    int resposta = JOptionPane.showConfirmDialog(this, "Deseja jogar novamente?",
+                            "Jogar Novamente", JOptionPane.YES_NO_OPTION);
 
-                if (resposta == JOptionPane.YES_OPTION) {
-                    iniciarJogo(); // Recomeça tudo
+                    if (resposta == JOptionPane.YES_OPTION) {
+                        iniciarJogo(); // Recomeça tudo
+                    } else {
+                        TelaAluno tela = new TelaAluno();
+                        tela.setVisible(true);
+                        this.dispose();
+                    }
                 } else {
-                    TelaAluno tela = new TelaAluno();
-                    tela.setVisible(true);
-                    this.dispose();
+                    // Espera 1 segundo antes de mostrar a próxima questão
+                    javax.swing.Timer timer = new javax.swing.Timer(1000, e -> {
+                        respostaProcessada = false;
+                        mostrarProximaQuestao();
+                    });
+                    timer.setRepeats(false);
+                    timer.start();
                 }
             } else {
-                // Espera 1 segundo antes de mostrar a próxima questão
-                javax.swing.Timer timer = new javax.swing.Timer(1000, e -> {
-                    respostaProcessada = false;
-                    mostrarProximaQuestao();
-                });
-                timer.setRepeats(false);
-                timer.start();
-            }
-        } else {
-            // Errou a questão → volta ao início
-            marcarBotaoIncorreto(respostaSelecionada);
-            
-            JOptionPane.showMessageDialog(this, "Resposta incorreta!\nVocê deve começar novamente.",
-                    "Erro", JOptionPane.ERROR_MESSAGE);
+                // Errou a questão → volta ao início
+                marcarBotaoIncorreto(respostaSelecionada);
+                
+                JOptionPane.showMessageDialog(this, "Resposta incorreta!\nVocê deve começar novamente.",
+                        "Erro", JOptionPane.ERROR_MESSAGE);
 
-            iniciarJogo(); // Reinicia o jogo
+                iniciarJogo(); // Reinicia o jogo
+            }
         }
-    }
 }
 
      // Métodos para marcar os botões com cores
@@ -457,11 +448,11 @@ private void marcarBotaoIncorreto(String alternativa) {
     }
 }
     
-    private void mostrarProximaQuestao() {
-        if (indiceAtual < totalQuestoes) {
-            carregarQuestao(indiceAtual);
-            indiceAtual++;
+        private void mostrarProximaQuestao() {
+        if (questaoAtual < totalQuestoes) {
+            indiceQuestaoExibida = questaoAtual;
+            carregarQuestao(questaoAtual);
+        }
     }
-}
 
 }
