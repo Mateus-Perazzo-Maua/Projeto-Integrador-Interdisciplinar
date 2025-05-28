@@ -59,9 +59,7 @@ public class TelaJogo extends javax.swing.JFrame {
         List<Questao> questoesM = questaoDAO.buscarQuestoesPorDificuldadeESerie("medio", serieSelecionada);
         List<Questao> questoesD = questaoDAO.buscarQuestoesPorDificuldadeESerie("dificil", serieSelecionada);
 
-        Collections.shuffle(questoesF);
-        Collections.shuffle(questoesM);
-        Collections.shuffle(questoesD);
+      
 
         int qtdF = 4, qtdM = 4, qtdD = 4;
 
