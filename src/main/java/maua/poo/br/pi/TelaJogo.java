@@ -34,6 +34,8 @@ public class TelaJogo extends javax.swing.JFrame {
     private Set<Integer> questoesRespondidas = new HashSet<>();
     private List<Questao> questoes;
     private String serieSelecionada;
+    private final int acertosParaVencer = 12;
+
     /**
      * Creates new form TelaJogo
      */
@@ -50,42 +52,56 @@ public class TelaJogo extends javax.swing.JFrame {
     }
 
 
-     private void iniciarJogo() {
+    private void iniciarJogo() {
     try {
-        respostaProcessada = false;
-        pontuacao = 0;
-        indiceAtual = 0;
-        questaoAtual = 0;
-        questoesRespondidas.clear();
-        
-        QuestaoDAO questaoDAO = new QuestaoDAO();
-        
-        List<Questao> questoesF = questaoDAO.buscarQuestoesPorDificuldadeESerie("facil", serieSelecionada);
-        List<Questao> questoesM = questaoDAO.buscarQuestoesPorDificuldadeESerie("medio", serieSelecionada);
-        List<Questao> questoesD = questaoDAO.buscarQuestoesPorDificuldadeESerie("dificil", serieSelecionada);
-
-      
-
-        int qtdF = 4, qtdM = 4, qtdD = 4;
-
+        QuestaoDAO dao = new QuestaoDAO();
         listaQuestoes = new ArrayList<>();
-        listaQuestoes.addAll(questoesF.subList(0, Math.min(qtdF, questoesF.size())));
-        listaQuestoes.addAll(questoesM.subList(0, Math.min(qtdM, questoesM.size())));
-        listaQuestoes.addAll(questoesD.subList(0, Math.min(qtdD, questoesD.size())));
+
+        // Carrega questões fáceis
+        List<Questao> faceis = dao.buscarQuestoesPorDificuldadeESerie("Fácil", serieSelecionada);
+        Collections.shuffle(faceis);
+        if (faceis.size() >= 4) {
+            listaQuestoes.addAll(faceis.subList(0, 4));
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há questões fáceis suficientes.");
+            return;
+        }
+
+        // Carrega questões médias
+        List<Questao> medias = dao.buscarQuestoesPorDificuldadeESerie("Média", serieSelecionada);
+        Collections.shuffle(medias);
+        if (medias.size() >= 4) {
+            listaQuestoes.addAll(medias.subList(0, 4));
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há questões médias suficientes.");
+            return;
+        }
+
+        // Carrega questões difíceis
+        List<Questao> dificeis = dao.buscarQuestoesPorDificuldadeESerie("Difícil", serieSelecionada);
+        Collections.shuffle(dificeis);
+        if (dificeis.size() >= 4) {
+            listaQuestoes.addAll(dificeis.subList(0, 4));
+        } else {
+            JOptionPane.showMessageDialog(this, "Não há questões difíceis suficientes.");
+            return;
+        }
+
+        // Embaralha a lista final (se quiser que fiquem fora de ordem de dificuldade)
+        // Collections.shuffle(listaQuestoes);
 
         totalQuestoes = listaQuestoes.size();
         questaoAtual = 0;
-        
-        // Embaralha as questões para ordem aleatória
-            Collections.shuffle(listaQuestoes);
-        
-            mostrarProximaQuestao();
+        mostrarProximaQuestao();
+
+        System.out.println("Total de questões carregadas: " + totalQuestoes);
 
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(this, "Erro ao iniciar o jogo: " + e.getMessage(),
-            "Erro", JOptionPane.ERROR_MESSAGE);
+        e.printStackTrace();
+        JOptionPane.showMessageDialog(this, "Erro ao iniciar o jogo: " + e.getMessage());
     }
 }
+
     
 
 
@@ -131,7 +147,7 @@ private void verificarResposta(String respostaSelecionada) {
                 pontuacao++;
                 questaoAtual++; // Avança para a próxima questão
 
-                if (questaoAtual >= totalQuestoes) {
+                if (pontuacao >= acertosParaVencer) {
                     // Jogador chegou até o fim com todas certas!
                     JOptionPane.showMessageDialog(this, "Parabéns! Você terminou o jogo!\nSua pontuação: " + pontuacao,
                             "Fim do Jogo", JOptionPane.INFORMATION_MESSAGE);
@@ -449,10 +465,25 @@ private void marcarBotaoIncorreto(String alternativa) {
 }
     
         private void mostrarProximaQuestao() {
-        if (questaoAtual < totalQuestoes) {
-            indiceQuestaoExibida = questaoAtual;
-            carregarQuestao(questaoAtual);
+            if (questaoAtual < totalQuestoes) {
+        indiceQuestaoExibida = questaoAtual;
+        carregarQuestao(questaoAtual);
+            } else {
+        // Fim do jogo – respondeu todas as questões
+        JOptionPane.showMessageDialog(this, "Fim do jogo!\nSua pontuação: " + pontuacao,
+                "Jogo Finalizado", JOptionPane.INFORMATION_MESSAGE);
+
+        int resposta = JOptionPane.showConfirmDialog(this, "Deseja jogar novamente?",
+                "Jogar Novamente", JOptionPane.YES_NO_OPTION);
+
+        if (resposta == JOptionPane.YES_OPTION) {
+            iniciarJogo();
+        } else {
+            TelaAluno tela = new TelaAluno();
+            tela.setVisible(true);
+            this.dispose();
         }
     }
+}
 
 }
