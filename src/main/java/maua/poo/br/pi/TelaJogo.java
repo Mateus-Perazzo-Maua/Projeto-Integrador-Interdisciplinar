@@ -35,6 +35,7 @@ public class TelaJogo extends javax.swing.JFrame {
     private List<Questao> questoes;
     private String serieSelecionada;
     private final int acertosParaVencer = 12;
+    private int indiceCheckpoint = 0;
 
     /**
      * Creates new form TelaJogo
@@ -54,6 +55,9 @@ public class TelaJogo extends javax.swing.JFrame {
 
     private void iniciarJogo() {
     try {
+        indiceCheckpoint = 0;
+        questaoAtual = 0;
+        
         QuestaoDAO dao = new QuestaoDAO();
         listaQuestoes = new ArrayList<>();
 
@@ -91,10 +95,8 @@ public class TelaJogo extends javax.swing.JFrame {
         // Collections.shuffle(listaQuestoes);
 
         totalQuestoes = listaQuestoes.size();
-        questaoAtual = 0;
+        questaoAtual = indiceCheckpoint;
         mostrarProximaQuestao();
-
-        System.out.println("Total de questões carregadas: " + totalQuestoes);
 
     } catch (Exception e) {
         e.printStackTrace();
@@ -146,6 +148,10 @@ private void verificarResposta(String respostaSelecionada) {
             if (respostaSelecionada.equals(respostaCorreta)) {
                 pontuacao++;
                 questaoAtual++; // Avança para a próxima questão
+                
+                if (questaoAtual == 4 || questaoAtual == 8) {
+                indiceCheckpoint = questaoAtual;
+            }
 
                 if (pontuacao >= acertosParaVencer) {
                     // Jogador chegou até o fim com todas certas!
@@ -156,6 +162,11 @@ private void verificarResposta(String respostaSelecionada) {
                             "Jogar Novamente", JOptionPane.YES_NO_OPTION);
 
                     if (resposta == JOptionPane.YES_OPTION) {
+                        respostaProcessada = false;
+                        indiceCheckpoint = 0;
+                        pontuacao = 0;
+                        questaoAtual = 0;
+                        indiceQuestaoExibida = 0;
                         iniciarJogo(); // Recomeça tudo
                     } else {
                         TelaAluno tela = new TelaAluno();
@@ -177,7 +188,7 @@ private void verificarResposta(String respostaSelecionada) {
                 
                 JOptionPane.showMessageDialog(this, "Resposta incorreta!\nVocê deve começar novamente.",
                         "Erro", JOptionPane.ERROR_MESSAGE);
-
+                respostaProcessada = false;
                 iniciarJogo(); // Reinicia o jogo
             }
         }
