@@ -11,10 +11,11 @@ public class Questao {
     private String alternativaC;
     private String alternativaD;
     private String correta;
+    private String dica;
 
     public Questao() {}
 
-    public Questao(int id, String enunciado, String alternativaA, String alternativaB, String alternativaC, String alternativaD, String correta) {
+    public Questao(int id, String enunciado, String alternativaA, String alternativaB, String alternativaC, String alternativaD, String correta, String dica) {
         this.id = id;
         this.enunciado = enunciado;
         this.alternativaA = alternativaA;
@@ -22,6 +23,7 @@ public class Questao {
         this.alternativaC = alternativaC;
         this.alternativaD = alternativaD;
         this.correta = correta;
+        this.dica = dica;
     }
 
     public int getId() {
@@ -96,6 +98,10 @@ public class Questao {
         this.correta = c;
     }
 
+    public String getDica() {
+        return dica;
+    }
+    
     public List<String> getOpcoes() {
         return List.of(alternativaA, alternativaB, alternativaC, alternativaD);
     }

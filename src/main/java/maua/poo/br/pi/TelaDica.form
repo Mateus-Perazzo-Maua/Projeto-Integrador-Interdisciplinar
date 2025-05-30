@@ -28,9 +28,9 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="138" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jButton1" max="32767" attributes="0"/>
-                          <Component id="jButton2" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jButton3" alignment="0" pref="205" max="32767" attributes="0"/>
+                          <Component id="pularQuestaoButton" max="32767" attributes="0"/>
+                          <Component id="testarRespostaButton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="eliminarErradasButton" alignment="0" pref="205" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -46,11 +46,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" pref="45" max="-2" attributes="0"/>
+              <Component id="pularQuestaoButton" min="-2" pref="45" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Component id="jButton2" min="-2" pref="45" max="-2" attributes="0"/>
+              <Component id="testarRespostaButton" min="-2" pref="45" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-              <Component id="jButton3" min="-2" pref="45" max="-2" attributes="0"/>
+              <Component id="eliminarErradasButton" min="-2" pref="45" max="-2" attributes="0"/>
               <EmptySpace pref="58" max="32767" attributes="0"/>
               <Component id="voltarButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -59,23 +59,29 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="pularQuestaoButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Pular Quest&#xe3;o"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pularQuestaoButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="testarRespostaButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Testar Resposta"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="testarRespostaButtonActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="eliminarErradasButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Eliminar Alternativas (2)"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="eliminarErradasButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="voltarButton">
       <Properties>

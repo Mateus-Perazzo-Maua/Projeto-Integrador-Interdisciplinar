@@ -229,7 +229,7 @@ private void verificarResposta(String respostaSelecionada) {
         alternativaCButton.setEnabled(false);
         alternativaDButton.setEnabled(false);
     }
-    
+      
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -405,7 +405,7 @@ private void verificarResposta(String respostaSelecionada) {
         // TODO add your handling code here:
         TelaDica tela = new TelaDica();
         tela.setVisible(true);
-        this.dispose();
+        
     }//GEN-LAST:event_dicasButtonActionPerformed
 
     private void alternativaDButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alternativaDButtonActionPerformed
@@ -477,14 +477,14 @@ private void marcarBotaoIncorreto(String alternativa) {
     
         private void mostrarProximaQuestao() {
             if (questaoAtual < totalQuestoes) {
-        indiceQuestaoExibida = questaoAtual;
-        carregarQuestao(questaoAtual);
-            } else {
+            indiceQuestaoExibida = questaoAtual;
+            carregarQuestao(questaoAtual);
+        } else {
         // Fim do jogo – respondeu todas as questões
-        JOptionPane.showMessageDialog(this, "Fim do jogo!\nSua pontuação: " + pontuacao,
+            JOptionPane.showMessageDialog(this, "Fim do jogo!\nSua pontuação: " + pontuacao,
                 "Jogo Finalizado", JOptionPane.INFORMATION_MESSAGE);
 
-        int resposta = JOptionPane.showConfirmDialog(this, "Deseja jogar novamente?",
+            int resposta = JOptionPane.showConfirmDialog(this, "Deseja jogar novamente?",
                 "Jogar Novamente", JOptionPane.YES_NO_OPTION);
 
         if (resposta == JOptionPane.YES_OPTION) {
