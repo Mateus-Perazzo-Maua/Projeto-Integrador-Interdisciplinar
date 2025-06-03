@@ -141,8 +141,8 @@ public class TelaProfessor extends javax.swing.JFrame {
 
     private void visualizarEstatisticasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizarEstatisticasButtonActionPerformed
         // TODO add your handling code here:
-        TelaVisualizarEstatisticas tela = new TelaVisualizarEstatisticas();
-        tela.setVisible(true);
+       
+        
         
         // Fecha a tela 
                     ((JFrame) SwingUtilities.getWindowAncestor(visualizarEstatisticasButton)).dispose();
