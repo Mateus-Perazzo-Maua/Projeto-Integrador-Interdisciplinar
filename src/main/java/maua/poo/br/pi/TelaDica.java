@@ -14,12 +14,37 @@ public class TelaDica extends JFrame {
     private int questaoAtual = 0;
     private List<Questao> listaQuestoes;
     private boolean dicaPularUsada = false;
-    private int dicasEliminarRestantes = 2;
+    private boolean dicasEliminarRestantes = false;
     private boolean dicaTestarUsada = false;
 
     // CONSTRUTOR MODIFICADO
-    public TelaDica() {
+    public TelaDica(TelaJogo telaJogo) {    
         initComponents();
+        this.telaJogo = telaJogo;
+        atualizarEstadoBotoes();
+    }
+    
+    
+     private void atualizarEstadoBotoes() {
+        if (telaJogo != null) {
+            // Verifica dica pular
+            if (telaJogo.isDicaPularUsada()) {
+                pularQuestaoButton.setEnabled(false);
+                pularQuestaoButton.setText("Pular Questão (USADO)");
+            }
+            
+            // Verifica dica testar
+            if (telaJogo.isDicaTestarUsada()) {
+                testarRespostaButton.setEnabled(false);
+                testarRespostaButton.setText("Testar Resposta (USADO)");
+            }
+            
+            // Verifica dica eliminar
+            if (telaJogo.isDicasEliminarEsgotadas()) {
+                eliminarErradasButton.setEnabled(false);
+                eliminarErradasButton.setText("Eliminar Alternativas (USADO)");
+            }
+        }
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -46,7 +71,7 @@ public class TelaDica extends JFrame {
             }
         });
 
-        eliminarErradasButton.setText("Eliminar Alternativas (2)");
+        eliminarErradasButton.setText("Eliminar Alternativas");
         eliminarErradasButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 eliminarErradasButtonActionPerformed(evt);
@@ -96,17 +121,30 @@ public class TelaDica extends JFrame {
 
     private void pularQuestaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pularQuestaoButtonActionPerformed
         // TODO add your handling code here:
-     if (dicaPularUsada) {
-            JOptionPane.showMessageDialog(this, "Você já usou a dica de pular questão!");
+    if (telaJogo == null) {
+            JOptionPane.showMessageDialog(this, "Esta funcionalidade só está disponível durante o jogo!");
+            return;
+        }
+        
+       
+        if (telaJogo.isDicaPularUsada()) {
+            JOptionPane.showMessageDialog(this, "Você já usou a dica de pular questão!", 
+                "Dica já utilizada", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        dicaPularUsada = true;
+        
+        telaJogo.marcarDicaPularComoUsada();
+        
+        // Atualiza o botão
+        pularQuestaoButton.setEnabled(false);
+        pularQuestaoButton.setText("Pular Questão (USADO)");
 
-        // Chama método da TelaJogo
+        // Chama o método da TelaJogo
         telaJogo.pularQuestao();
 
-        dispose(); // Fecha a tela de dica
+        // Fecha a tela de dicas
+        dispose();
     }//GEN-LAST:event_pularQuestaoButtonActionPerformed
 
     private void voltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarButtonActionPerformed
@@ -116,60 +154,64 @@ public class TelaDica extends JFrame {
 
     private void eliminarErradasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarErradasButtonActionPerformed
         // TODO add your handling code here:
-        if (dicasEliminarRestantes <= 0) {
-            JOptionPane.showMessageDialog(this, "Você já usou todas as dicas de eliminar alternativas!");
+       if (telaJogo == null) {
+            JOptionPane.showMessageDialog(this, "Esta funcionalidade só está disponível durante o jogo!");
             return;
         }
+        
+        if (telaJogo.isDicasEliminarEsgotadas()) {
+            JOptionPane.showMessageDialog(this, "Você já usou a dica de eliminar alternativas!", 
+                "Dica já utilizada", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+      
+        telaJogo.marcarDicaEliminarComoUsada();
+        
+        // Atualiza o botão
+        eliminarErradasButton.setEnabled(false);
+        eliminarErradasButton.setText("Eliminar Alternativas (USADO)");
 
-        dicasEliminarRestantes--;
-
-        // Chama método da TelaJogo
+        // Chama o método da TelaJogo
         telaJogo.eliminarAlternativasErradas();
 
-        eliminarErradasButton.setText("Eliminar Alternativas (" + dicasEliminarRestantes + ")");
-        if (dicasEliminarRestantes == 0) {
-            eliminarErradasButton.setEnabled(false);
-        }
+        // Mensagem de confirmação
+        JOptionPane.showMessageDialog(this, "Duas alternativas incorretas foram eliminadas!");
+        
+        // Fecha a tela de dicas
+        dispose();
+
     }//GEN-LAST:event_eliminarErradasButtonActionPerformed
 
     private void testarRespostaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_testarRespostaButtonActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:                                                    
+        if (telaJogo == null) {
+            JOptionPane.showMessageDialog(this, "Esta funcionalidade só está disponível durante o jogo!");
+            return;
+        }
+        
+        if (telaJogo.isDicaTestarUsada()) {
+            JOptionPane.showMessageDialog(this, "Você já usou a dica de testar resposta!", 
+                "Dica já utilizada", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+         
+        telaJogo.marcarDicaTestarComoUsada();
+        
+        // Atualiza o botão
+        testarRespostaButton.setEnabled(false);
+        testarRespostaButton.setText("Testar Resposta (USADO)");
+        
+        // Chama o método da TelaJogo
+        telaJogo.testarResposta();
+        
+        // Fecha a tela de dicas
+        dispose();
     }//GEN-LAST:event_testarRespostaButtonActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaDica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaDica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaDica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaDica.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaDica().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton eliminarErradasButton;

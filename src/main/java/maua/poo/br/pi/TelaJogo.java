@@ -36,7 +36,10 @@ public class TelaJogo extends javax.swing.JFrame {
     private String serieSelecionada;
     private final int acertosParaVencer = 12;
     private int indiceCheckpoint = 0;
-
+    private boolean dicaPularUsada = false;
+    private boolean dicaTestarUsada = false;
+    private int dicasEliminarUsadas = 0;
+    private final int maxDicasEliminar = 1;
     /**
      * Creates new form TelaJogo
      */
@@ -52,11 +55,42 @@ public class TelaJogo extends javax.swing.JFrame {
         iniciarJogo();
     }
 
+    
+    public boolean isDicaPularUsada() {
+        return dicaPularUsada;
+    }
 
+    public boolean isDicaTestarUsada() {
+        return dicaTestarUsada;
+    }
+
+    public boolean isDicasEliminarEsgotadas() {
+        return dicasEliminarUsadas >= maxDicasEliminar;
+    }
+
+    // Métodos para marcar as dicas como usadas
+    public void marcarDicaPularComoUsada() {
+        dicaPularUsada = true;
+    }
+
+    public void marcarDicaTestarComoUsada() {
+        dicaTestarUsada = true;
+    }
+
+    public void marcarDicaEliminarComoUsada() {
+        dicasEliminarUsadas++;
+    }
+
+    
     private void iniciarJogo() {
-    try {
+        try {
+        // Resetar dicas
+        dicaPularUsada = false;
+        dicaTestarUsada = false;
+        dicasEliminarUsadas = 0;
         indiceCheckpoint = 0;
         questaoAtual = 0;
+        
         
         QuestaoDAO dao = new QuestaoDAO();
         listaQuestoes = new ArrayList<>();
@@ -90,9 +124,6 @@ public class TelaJogo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Não há questões difíceis suficientes.");
             return;
         }
-
-        // Embaralha a lista final (se quiser que fiquem fora de ordem de dificuldade)
-        // Collections.shuffle(listaQuestoes);
 
         totalQuestoes = listaQuestoes.size();
         questaoAtual = indiceCheckpoint;
@@ -230,6 +261,68 @@ private void verificarResposta(String respostaSelecionada) {
         alternativaDButton.setEnabled(false);
     }
       
+// Método para pular questão
+public void pularQuestao() {
+    if (questaoAtual < totalQuestoes - 1) {
+        questaoAtual++;
+        mostrarProximaQuestao();
+        JOptionPane.showMessageDialog(this, "Questão pulada! Avançando para a próxima.");
+    } else {
+        JOptionPane.showMessageDialog(this, "Esta é a última questão, não é possível pular!");
+    }
+}
+
+// Método para eliminar alternativas erradas
+public void eliminarAlternativasErradas() {
+    if (indiceQuestaoExibida < listaQuestoes.size()) {
+        Questao questaoAtual = listaQuestoes.get(indiceQuestaoExibida);
+        String respostaCorreta = questaoAtual.getRespostaCorreta();
+        
+        // Lista de alternativas possíveis
+        String[] alternativas = {"A", "B", "C", "D"};
+        int eliminadas = 0;
+        
+        // Elimina 2 alternativas incorretas
+        for (String alt : alternativas) {
+            if (!alt.equals(respostaCorreta) && eliminadas < 2) {
+                JButton botao = botoesResposta.get(alt);
+                if (botao != null && botao.isEnabled()) {
+                    botao.setEnabled(false);
+                    botao.setBackground(Color.LIGHT_GRAY);
+                    eliminadas++;
+                }
+            }
+        }
+    }
+}
+
+// Método para testar resposta
+public void testarResposta() {
+    String[] opcoes = {"A", "B", "C", "D"};
+    String escolha = (String) JOptionPane.showInputDialog(
+        this,
+        "Qual alternativa você quer testar?",
+        "Testar Resposta",
+        JOptionPane.QUESTION_MESSAGE,
+        null,
+        opcoes,
+        opcoes[0]
+    );
+    
+    if (escolha != null && indiceQuestaoExibida < listaQuestoes.size()) {
+        Questao questaoAtual = listaQuestoes.get(indiceQuestaoExibida);
+        String respostaCorreta = questaoAtual.getRespostaCorreta();
+        
+        if (escolha.equals(respostaCorreta)) {
+            JOptionPane.showMessageDialog(this, "A alternativa " + escolha + " está CORRETA!", 
+                "Resultado do Teste", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "A alternativa " + escolha + " está INCORRETA!", 
+                "Resultado do Teste", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+}
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -403,8 +496,9 @@ private void verificarResposta(String respostaSelecionada) {
 
     private void dicasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dicasButtonActionPerformed
         // TODO add your handling code here:
-        TelaDica tela = new TelaDica();
+        TelaDica tela = new TelaDica(this);
         tela.setVisible(true);
+
         
     }//GEN-LAST:event_dicasButtonActionPerformed
 
