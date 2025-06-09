@@ -16,7 +16,7 @@ ALTER TABLE questoes ADD COLUMN serie VARCHAR(10);
 SELECT * FROM questoes;
 
 
-SELECT * FROM questoes WHERE serie = 'Terceiro';
+SELECT * FROM questoes WHERE serie = 'Segundo';
 
 -- 🟩 Fáceis — Primeiro ano
 INSERT INTO questoes (materia, enunciado, alternativaA, alternativaB, alternativaC, alternativaD, correta, dificuldade, serie)

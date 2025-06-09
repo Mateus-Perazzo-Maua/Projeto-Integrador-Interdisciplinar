@@ -11,11 +11,11 @@ import java.sql.DriverManager;
  * @author 25.00357-5
  */
 public class ConexaoBD {
-    private static String host = "localhost";
+    private static String host = "127.0.0.1";
     private static String porta = "3306";
     private static String db = "projeto_integrador";
     private static String usuario = "root";
-    private static String senha = "imtdb";
+    private static String senha = "Yuiti0109@gyss";
 
     public static Connection obterConexao () throws Exception{
         String url = String.format(

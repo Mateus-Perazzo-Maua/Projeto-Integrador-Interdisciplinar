@@ -35,7 +35,8 @@ public class TelaJogo extends javax.swing.JFrame {
     private List<Questao> questoes;
     private String serieSelecionada;
     private final int acertosParaVencer = 12;
-    private int indiceCheckpoint = 0;
+    private int ultimoCheckpoint = 0;
+    private boolean[] questoesPontuadas;
     private boolean dicaPularUsada = false;
     private boolean dicaTestarUsada = false;
     private int dicasEliminarUsadas = 0;
@@ -88,7 +89,11 @@ public class TelaJogo extends javax.swing.JFrame {
         dicaPularUsada = false;
         dicaTestarUsada = false;
         dicasEliminarUsadas = 0;
-        indiceCheckpoint = 0;
+        
+        if (questaoAtual == 0) {
+            ultimoCheckpoint = 0;
+        }
+        
         questaoAtual = 0;
         
         
@@ -126,7 +131,8 @@ public class TelaJogo extends javax.swing.JFrame {
         }
 
         totalQuestoes = listaQuestoes.size();
-        questaoAtual = indiceCheckpoint;
+        questaoAtual = ultimoCheckpoint;
+        questoesPontuadas = new boolean[totalQuestoes];
         mostrarProximaQuestao();
 
     } catch (Exception e) {
@@ -151,12 +157,17 @@ public class TelaJogo extends javax.swing.JFrame {
         Questao q = listaQuestoes.get(indice);
 
         txtPergunta.setText(q.getEnunciado());
-        resetarCoresBotoes();
 
         alternativaAButton.setText(q.getAlternativaA());
         alternativaBButton.setText(q.getAlternativaB());
         alternativaCButton.setText(q.getAlternativaC());
         alternativaDButton.setText(q.getAlternativaD());
+        
+        resetarCoresBotoes();
+        
+        respostaProcessada = false;
+        
+        System.out.println("Questão carregada: " + (indice + 1));
     }
     
 
@@ -177,12 +188,22 @@ private void verificarResposta(String respostaSelecionada) {
             }
 
             if (respostaSelecionada.equals(respostaCorreta)) {
-                pontuacao++;
+                if (!questoesPontuadas[indiceQuestaoExibida]) {
+                    pontuacao++;
+                    questoesPontuadas[indiceQuestaoExibida] = true;
+                    System.out.println("Ponto adicionado! Pontuação atual: " + pontuacao);
+                } else {
+                    System.out.println("Questão já foi pontuada antes. Pontuação mantida: " + pontuacao);
+                }     
                 questaoAtual++; // Avança para a próxima questão
                 
-                if (questaoAtual == 4 || questaoAtual == 8) {
-                indiceCheckpoint = questaoAtual;
-            }
+                if (questaoAtual == 4) {
+                    ultimoCheckpoint = 4;
+                    System.out.println("CHECKPOINT SALVO: Questão 5 alcançada!");
+                } else if (questaoAtual == 8) {
+                    ultimoCheckpoint = 8;
+                    System.out.println("CHECKPOINT SALVO: Questão 9 alcançada!");
+                }
 
                 if (pontuacao >= acertosParaVencer) {
                     // Jogador chegou até o fim com todas certas!
@@ -194,7 +215,7 @@ private void verificarResposta(String respostaSelecionada) {
 
                     if (resposta == JOptionPane.YES_OPTION) {
                         respostaProcessada = false;
-                        indiceCheckpoint = 0;
+                        ultimoCheckpoint = 0;
                         pontuacao = 0;
                         questaoAtual = 0;
                         indiceQuestaoExibida = 0;
@@ -217,12 +238,41 @@ private void verificarResposta(String respostaSelecionada) {
                 // Errou a questão → volta ao início
                 marcarBotaoIncorreto(respostaSelecionada);
                 
-                JOptionPane.showMessageDialog(this, "Resposta incorreta!\nVocê deve começar novamente.",
+                String mensagemCheckpoint;
+                switch (ultimoCheckpoint) {
+                    case 8:
+                        mensagemCheckpoint = "Você voltará para a questão 9";
+                        break;
+                    case 4:
+                        mensagemCheckpoint = "Você voltará para a questão 5";
+                        break;
+                    default:
+                        mensagemCheckpoint = "Você deve começar novamente";
+                        break;
+                }
+                
+                JOptionPane.showMessageDialog(this, "Resposta incorreta!\n" + mensagemCheckpoint,
                         "Erro", JOptionPane.ERROR_MESSAGE);
-                respostaProcessada = false;
-                iniciarJogo(); // Reinicia o jogo
+                
+                voltarParaCheckpoint();
             }
         }
+}
+
+private void voltarParaCheckpoint() {
+    questaoAtual = ultimoCheckpoint;
+    indiceQuestaoExibida = ultimoCheckpoint;
+    
+    dicaPularUsada = false;
+    dicaTestarUsada = false;
+    dicasEliminarUsadas = 0;
+    
+    respostaProcessada = true;
+    
+    System.out.println("Voltando para checkpoint: questão " + (ultimoCheckpoint + 1));
+    System.out.println("Pontuação mantida: " + pontuacao);
+    
+    carregarQuestao(ultimoCheckpoint);
 }
 
      // Métodos para marcar os botões com cores

@@ -135,6 +135,7 @@ public class TelaAluno extends javax.swing.JFrame {
         
         TelaJogo telaJogo = new TelaJogo(serieSelecionada);
         telaJogo.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jogarButtonActionPerformed
 
     private void comboSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSerieActionPerformed
