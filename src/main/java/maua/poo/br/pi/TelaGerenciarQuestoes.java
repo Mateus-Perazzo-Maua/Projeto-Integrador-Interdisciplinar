@@ -52,6 +52,8 @@ public class TelaGerenciarQuestoes extends javax.swing.JFrame {
         listarQuestaoButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setLocation(new java.awt.Point(0, 0));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Gerenciamento de questões"));
 
@@ -255,7 +257,9 @@ public class TelaGerenciarQuestoes extends javax.swing.JFrame {
 
     private void listarQuestaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listarQuestaoButtonActionPerformed
         // TODO add your handling code here:
-        new TelaRemoverQuestão().setVisible(true);
+        TelaRemoverQuestão tela = new TelaRemoverQuestão();
+        tela.setVisible(true);
+        this. dispose();
     }//GEN-LAST:event_listarQuestaoButtonActionPerformed
 
     private void materiaComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_materiaComboActionPerformed
