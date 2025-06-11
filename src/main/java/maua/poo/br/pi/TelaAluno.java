@@ -35,15 +35,17 @@ public class TelaAluno extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jogarButton = new javax.swing.JButton();
         sairButton = new javax.swing.JButton();
-        estatisticasButton = new javax.swing.JButton();
         comboSerie = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Colégio Poliedro"));
+        jPanel1.setBackground(new java.awt.Color(189, 231, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Colégio Poliedro", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 1, 12), new java.awt.Color(255, 149, 0))); // NOI18N
 
+        jogarButton.setBackground(new java.awt.Color(69, 172, 236));
+        jogarButton.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
         jogarButton.setText("Jogar");
         jogarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -51,15 +53,18 @@ public class TelaAluno extends javax.swing.JFrame {
             }
         });
 
+        sairButton.setBackground(new java.awt.Color(69, 172, 236));
+        sairButton.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         sairButton.setText("Sair");
+        sairButton.setBorder(new javax.swing.border.MatteBorder(null));
         sairButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sairButtonActionPerformed(evt);
             }
         });
 
-        estatisticasButton.setText("Estatísticas");
-
+        comboSerie.setBackground(new java.awt.Color(69, 172, 236));
+        comboSerie.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         comboSerie.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Primeiro", "Segundo", "Terceiro" }));
         comboSerie.setBorder(null);
         comboSerie.addActionListener(new java.awt.event.ActionListener() {
@@ -68,9 +73,12 @@ public class TelaAluno extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Selecione sua série");
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 149, 0));
+        jLabel1.setText("Selecione sua Série");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 149, 0));
         jLabel2.setText("Quem Quer Ser o Aprovado?");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -83,33 +91,30 @@ public class TelaAluno extends javax.swing.JFrame {
                         .addGap(297, 297, 297)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1)
-                            .addComponent(comboSerie, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(estatisticasButton, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+                            .addComponent(comboSerie, 0, 420, Short.MAX_VALUE)
                             .addComponent(jogarButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(278, 278, 278)
                         .addComponent(jLabel2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(457, 457, 457)
+                        .addGap(461, 461, 461)
                         .addComponent(sairButton, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(277, Short.MAX_VALUE))
+                .addContainerGap(262, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(87, 87, 87)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 129, Short.MAX_VALUE)
-                .addComponent(jogarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
+                .addComponent(jogarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(comboSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addComponent(estatisticasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
+                .addComponent(comboSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(118, 118, 118)
                 .addComponent(sairButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(83, 83, 83))
+                .addGap(85, 85, 85))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -184,7 +189,6 @@ public class TelaAluno extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboSerie;
-    private javax.swing.JButton estatisticasButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

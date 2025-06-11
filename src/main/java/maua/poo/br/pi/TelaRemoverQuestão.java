@@ -50,9 +50,9 @@ public class TelaRemoverQuestão extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         questoesTable = new javax.swing.JTable();
-        filtrarButton = new javax.swing.JButton();
-        removerSelecionadaButton = new javax.swing.JButton();
         voltarRemoverButton = new javax.swing.JButton();
+        removerSelecionadaButton = new javax.swing.JButton();
+        filtrarButton = new javax.swing.JButton();
 
         dificuldadeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fácil", "Média", "Difícil" }));
         dificuldadeCombo.addActionListener(new java.awt.event.ActionListener() {
@@ -74,12 +74,19 @@ public class TelaRemoverQuestão extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        removerPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Remover Questão"));
+        removerPanel.setBackground(new java.awt.Color(189, 231, 255));
+        removerPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Colégio Poliedro", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 1, 12), new java.awt.Color(255, 149, 0))); // NOI18N
 
+        materiaCombo.setBackground(new java.awt.Color(69, 172, 236));
+        materiaCombo.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         materiaCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Português", "Literatura", "História", "Geografia", "Filosofia", "Sociologia", "Inglês", "Matemática", "Física", "Química", "Biologia" }));
 
+        materiaLabel.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        materiaLabel.setForeground(new java.awt.Color(255, 149, 0));
         materiaLabel.setText("Selecione a matéria");
 
+        serieCombo.setBackground(new java.awt.Color(69, 172, 236));
+        serieCombo.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         serieCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Primeiro", "Segundo", "Terceiro" }));
         serieCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,8 +94,12 @@ public class TelaRemoverQuestão extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 149, 0));
         jLabel2.setText("Selecione a série");
 
+        dificuldadeCombo2.setBackground(new java.awt.Color(69, 172, 236));
+        dificuldadeCombo2.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         dificuldadeCombo2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fácil", "Média", "Difícil" }));
         dificuldadeCombo2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -96,7 +107,51 @@ public class TelaRemoverQuestão extends javax.swing.JFrame {
             }
         });
 
+        jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 149, 0));
         jLabel4.setText("Selecione a dificuldade da questão");
+
+        questoesTable.setBackground(new java.awt.Color(204, 224, 236));
+        questoesTable.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        questoesTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "ID", "Enunciado", "Matéria"
+            }
+        ));
+        jScrollPane1.setViewportView(questoesTable);
+
+        voltarRemoverButton.setBackground(new java.awt.Color(69, 172, 236));
+        voltarRemoverButton.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        voltarRemoverButton.setText("Voltar");
+        voltarRemoverButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                voltarRemoverButtonActionPerformed(evt);
+            }
+        });
+
+        removerSelecionadaButton.setBackground(new java.awt.Color(69, 172, 236));
+        removerSelecionadaButton.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        removerSelecionadaButton.setText("Remover Selecionada");
+        removerSelecionadaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removerSelecionadaButtonActionPerformed(evt);
+            }
+        });
+
+        filtrarButton.setBackground(new java.awt.Color(69, 172, 236));
+        filtrarButton.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        filtrarButton.setText("Filtrar");
+        filtrarButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtrarButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout removerPanelLayout = new javax.swing.GroupLayout(removerPanel);
         removerPanel.setLayout(removerPanelLayout);
@@ -111,11 +166,20 @@ public class TelaRemoverQuestão extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(dificuldadeCombo2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(removerPanelLayout.createSequentialGroup()
+                .addContainerGap(232, Short.MAX_VALUE)
+                .addComponent(voltarRemoverButton)
+                .addGap(130, 130, 130)
+                .addComponent(removerSelecionadaButton)
+                .addGap(127, 127, 127)
+                .addComponent(filtrarButton)
+                .addGap(228, 228, 228))
         );
         removerPanelLayout.setVerticalGroup(
             removerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(removerPanelLayout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
+                .addGap(15, 15, 15)
                 .addComponent(materiaLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(materiaCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -127,42 +191,15 @@ public class TelaRemoverQuestão extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dificuldadeCombo2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addGap(47, 47, 47)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addGroup(removerPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(voltarRemoverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(filtrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(removerSelecionadaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
-
-        questoesTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "ID", "Enunciado", "Matéria"
-            }
-        ));
-        jScrollPane1.setViewportView(questoesTable);
-
-        filtrarButton.setText("Filtrar");
-        filtrarButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filtrarButtonActionPerformed(evt);
-            }
-        });
-
-        removerSelecionadaButton.setText("Remover Selecionada");
-        removerSelecionadaButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removerSelecionadaButtonActionPerformed(evt);
-            }
-        });
-
-        voltarRemoverButton.setText("Voltar");
-        voltarRemoverButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                voltarRemoverButtonActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -170,36 +207,13 @@ public class TelaRemoverQuestão extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(removerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(163, 163, 163)
-                .addComponent(voltarRemoverButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(filtrarButton)
-                .addGap(162, 162, 162))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1012, Short.MAX_VALUE)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(431, 431, 431)
-                .addComponent(removerSelecionadaButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(removerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(removerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(voltarRemoverButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(filtrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addComponent(removerSelecionadaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(removerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -272,7 +286,7 @@ public class TelaRemoverQuestão extends javax.swing.JFrame {
         String dificuldade = dificuldadeCombo2.getSelectedItem().toString().trim();
 
         DefaultTableModel modelo = (DefaultTableModel) questoesTable.getModel();
-        modelo.setRowCount(0); // limpa a tabela
+        modelo.setRowCount(0);
 
         List<Questao> questoes = new DAO().buscarQuestoesPorFiltro(materia, serie, dificuldade);
 

@@ -34,13 +34,14 @@ public class TelaProfessor extends javax.swing.JFrame {
         gerenciarUsuarioButton = new javax.swing.JButton();
         gerenciarQuestaoButton = new javax.swing.JButton();
         menuButton = new javax.swing.JButton();
-        visualizarEstatisticasButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Colégio Poliedro"));
+        jPanel1.setBackground(new java.awt.Color(189, 231, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Colégio Poliedro", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 1, 12), new java.awt.Color(255, 149, 0))); // NOI18N
 
+        gerenciarUsuarioButton.setBackground(new java.awt.Color(69, 172, 236));
         gerenciarUsuarioButton.setText("Gerenciar Usuários");
         gerenciarUsuarioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -48,6 +49,7 @@ public class TelaProfessor extends javax.swing.JFrame {
             }
         });
 
+        gerenciarQuestaoButton.setBackground(new java.awt.Color(69, 172, 236));
         gerenciarQuestaoButton.setText("Gerenciar Questões");
         gerenciarQuestaoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,6 +57,7 @@ public class TelaProfessor extends javax.swing.JFrame {
             }
         });
 
+        menuButton.setBackground(new java.awt.Color(69, 172, 236));
         menuButton.setText("Voltar");
         menuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,14 +65,8 @@ public class TelaProfessor extends javax.swing.JFrame {
             }
         });
 
-        visualizarEstatisticasButton.setText("Vizualizar estatísticas");
-        visualizarEstatisticasButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                visualizarEstatisticasButtonActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("sansserif", 0, 30)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 31)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 149, 0));
         jLabel1.setText("Gerenciamento Geral");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -77,33 +74,27 @@ public class TelaProfessor extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(visualizarEstatisticasButton, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                    .addComponent(gerenciarQuestaoButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(gerenciarUsuarioButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(409, 409, 409)
                 .addComponent(menuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(415, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(365, 365, 365)
-                .addComponent(jLabel1)
-                .addContainerGap(367, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(gerenciarQuestaoButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(gerenciarUsuarioButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(113, Short.MAX_VALUE)
+                .addGap(106, 106, 106)
                 .addComponent(jLabel1)
-                .addGap(98, 98, 98)
-                .addComponent(gerenciarUsuarioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(gerenciarQuestaoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(visualizarEstatisticasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
+                .addComponent(gerenciarUsuarioButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(gerenciarQuestaoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(91, 91, 91)
                 .addComponent(menuButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(145, 145, 145))
         );
@@ -134,7 +125,6 @@ public class TelaProfessor extends javax.swing.JFrame {
         TelaGerenciarUsuarios tela = new TelaGerenciarUsuarios();
         tela.setVisible(true);
         
-        // Fecha a tela 
                     ((JFrame) SwingUtilities.getWindowAncestor(gerenciarUsuarioButton)).dispose();
     }//GEN-LAST:event_gerenciarUsuarioButtonActionPerformed
 
@@ -143,18 +133,8 @@ public class TelaProfessor extends javax.swing.JFrame {
         TelaPi tela = new TelaPi();
         tela.setVisible(true);
         
-        // Fecha a tela 
                     ((JFrame) SwingUtilities.getWindowAncestor(menuButton)).dispose();
     }//GEN-LAST:event_menuButtonActionPerformed
-
-    private void visualizarEstatisticasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizarEstatisticasButtonActionPerformed
-        // TODO add your handling code here:
-       
-        
-        
-        // Fecha a tela 
-                    ((JFrame) SwingUtilities.getWindowAncestor(visualizarEstatisticasButton)).dispose();
-    }//GEN-LAST:event_visualizarEstatisticasButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,6 +177,5 @@ public class TelaProfessor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton menuButton;
-    private javax.swing.JButton visualizarEstatisticasButton;
     // End of variables declaration//GEN-END:variables
 }

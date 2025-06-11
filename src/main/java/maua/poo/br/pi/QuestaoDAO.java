@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
 public class QuestaoDAO {
     private static Connection conexao = null;
     
-    // Método para buscar a primeira questão (para teste inicial)
+    // busca primeira questão (teste inicial)
     public static Questao buscarPrimeiraQuestao() throws Exception {
         Questao questao = null;
         
@@ -52,7 +52,7 @@ public class QuestaoDAO {
         return questao;
     }
     
-    // Método para buscar todas as questões
+    // busca todas as questoes
     public static List<Questao> buscarTodasQuestoes() throws Exception {
         List<Questao> questoes = new ArrayList<>();
         
@@ -87,7 +87,7 @@ public class QuestaoDAO {
         return questoes;
     }
     
-    // Método para buscar questão por ID
+    // busca questão pelo id
     public static Questao buscarQuestaoPorId(int id) throws Exception {
         Questao questao = null;
         
@@ -121,7 +121,7 @@ public class QuestaoDAO {
         return questao;
     }
     
-
+    // busca questão por dificuldade e série
     public List<Questao> buscarQuestoesPorDificuldadeESerie(String dificuldade, String serie) throws Exception {
         List<Questao> listaQuestoes = new ArrayList<>();
         String sql = "SELECT * FROM questoes WHERE dificuldade = ? AND serie = ?";

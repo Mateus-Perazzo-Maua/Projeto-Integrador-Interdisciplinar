@@ -70,7 +70,7 @@ public class TelaJogo extends javax.swing.JFrame {
         return dicasEliminarUsadas >= maxDicasEliminar;
     }
 
-    // Métodos para marcar as dicas como usadas
+    // marcar as dicas como usadas
     public void marcarDicaPularComoUsada() {
         dicaPularUsada = true;
     }
@@ -86,7 +86,7 @@ public class TelaJogo extends javax.swing.JFrame {
     
     private void iniciarJogo() {
         try {
-        // Resetar dicas
+        // resetar dicas
         dicaPularUsada = false;
         dicaTestarUsada = false;
         dicasEliminarUsadas = 0;
@@ -101,7 +101,7 @@ public class TelaJogo extends javax.swing.JFrame {
         QuestaoDAO dao = new QuestaoDAO();
         listaQuestoes = new ArrayList<>();
 
-        // Carrega questões fáceis
+        // carrega questões fáceis
         List<Questao> faceis = dao.buscarQuestoesPorDificuldadeESerie("Fácil", serieSelecionada);
         Collections.shuffle(faceis);
         if (faceis.size() >= 4) {
@@ -111,7 +111,7 @@ public class TelaJogo extends javax.swing.JFrame {
             return;
         }
 
-        // Carrega questões médias
+        // carrega questões médias
         List<Questao> medias = dao.buscarQuestoesPorDificuldadeESerie("Média", serieSelecionada);
         Collections.shuffle(medias);
         if (medias.size() >= 4) {
@@ -121,7 +121,7 @@ public class TelaJogo extends javax.swing.JFrame {
             return;
         }
 
-        // Carrega questões difíceis
+        // carrega questões difíceis
         List<Questao> dificeis = dao.buscarQuestoesPorDificuldadeESerie("Difícil", serieSelecionada);
         Collections.shuffle(dificeis);
         if (dificeis.size() >= 4) {
@@ -148,7 +148,7 @@ public class TelaJogo extends javax.swing.JFrame {
 
     
     
-    // Método para carregar uma questão específica
+    // carregar questão específica
     private void carregarQuestao(int indice) {
     if (indice >= listaQuestoes.size()) {
             JOptionPane.showMessageDialog(null, "Você respondeu todas as questões!");
@@ -174,12 +174,12 @@ public class TelaJogo extends javax.swing.JFrame {
 
 
 
-    // Método para verificar resposta selecionada
+    // verificar resposta selecionada
 private void verificarResposta(String respostaSelecionada) {
     if (!respostaProcessada) {
             respostaProcessada = true;
 
-            // Use o índice da questão atualmente exibida
+            // usa índice da questão exibida no momento
             Questao questao = listaQuestoes.get(indiceQuestaoExibida);
             String respostaCorreta = questao.getRespostaCorreta();
 
@@ -196,7 +196,7 @@ private void verificarResposta(String respostaSelecionada) {
                 } else {
                     System.out.println("Questão já foi pontuada antes. Pontuação mantida: " + pontuacao);
                 }     
-                questaoAtual++; // Avança para a próxima questão
+                questaoAtual++; // avança pra próxima questão
                 
                 if (questaoAtual == 4) {
                     ultimoCheckpoint = 4;
@@ -207,7 +207,7 @@ private void verificarResposta(String respostaSelecionada) {
                 }
 
                 if (pontuacao >= acertosParaVencer) {
-                    // Jogador chegou até o fim com todas certas!
+                    // jogador zerou o jogo
                     JOptionPane.showMessageDialog(this, "Parabéns! Você terminou o jogo!\nSua pontuação: " + pontuacao,
                             "Fim do Jogo", JOptionPane.INFORMATION_MESSAGE);
 
@@ -220,14 +220,14 @@ private void verificarResposta(String respostaSelecionada) {
                         pontuacao = 0;
                         questaoAtual = 0;
                         indiceQuestaoExibida = 0;
-                        iniciarJogo(); // Recomeça tudo
+                        iniciarJogo(); // recomeça tudo
                     } else {
                         TelaAluno tela = new TelaAluno();
                         tela.setVisible(true);
                         this.dispose();
                     }
                 } else {
-                    // Espera 1 segundo antes de mostrar a próxima questão
+                    // espera 1 seg antes de mostrar próxima questão
                     javax.swing.Timer timer = new javax.swing.Timer(1000, e -> {
                         respostaProcessada = false;
                         mostrarProximaQuestao();
@@ -236,7 +236,7 @@ private void verificarResposta(String respostaSelecionada) {
                     timer.start();
                 }
             } else {
-                // Errou a questão → volta ao início
+
                 marcarBotaoIncorreto(respostaSelecionada);
                 
                 String mensagemCheckpoint;
@@ -276,7 +276,7 @@ private void voltarParaCheckpoint() {
     carregarQuestao(ultimoCheckpoint);
 }
 
-     // Métodos para marcar os botões com cores
+     // marcar os botões com cores
     private void resetarCoresBotoes() {
         alternativaAButton.setBackground(null);
         alternativaBButton.setBackground(null);
@@ -292,7 +292,7 @@ private void voltarParaCheckpoint() {
     private void marcarBotaoCorreto(String alternativa) {
         switch (alternativa) {
             case "A":
-                alternativaAButton.setBackground(new Color(0, 200, 0)); // Verde
+                alternativaAButton.setBackground(new Color(0, 200, 0)); // verde
                 break;
             case "B":
                 alternativaBButton.setBackground(new Color(0, 200, 0));
@@ -305,14 +305,14 @@ private void voltarParaCheckpoint() {
                 break;
         }
         
-        // Desabilitar botões após resposta
+        // desabilita botões após resposta
         alternativaAButton.setEnabled(false);
         alternativaBButton.setEnabled(false);
         alternativaCButton.setEnabled(false);
         alternativaDButton.setEnabled(false);
     }
       
-// Método para pular questão
+// pular questão
 public void pularQuestao() {
     if (questaoAtual < totalQuestoes - 1) {
         questaoAtual++;
@@ -323,17 +323,17 @@ public void pularQuestao() {
     }
 }
 
-// Método para eliminar alternativas erradas
+// eliminar alternativas erradas
 public void eliminarAlternativasErradas() {
     if (indiceQuestaoExibida < listaQuestoes.size()) {
         Questao questaoAtual = listaQuestoes.get(indiceQuestaoExibida);
         String respostaCorreta = questaoAtual.getRespostaCorreta();
         
-        // Lista de alternativas possíveis
+        // lista de alternativas possíveis
         String[] alternativas = {"A", "B", "C", "D"};
         int eliminadas = 0;
         
-        // Elimina 2 alternativas incorretas
+        // elimina 2 alternativas incorretas
         for (String alt : alternativas) {
             if (!alt.equals(respostaCorreta) && eliminadas < 2) {
                 JButton botao = botoesResposta.get(alt);
@@ -347,7 +347,7 @@ public void eliminarAlternativasErradas() {
     }
 }
 
-// Método para testar resposta
+// testar resposta
 public void testarResposta() {
     String[] opcoes = {"A", "B", "C", "D"};
     String escolha = (String) JOptionPane.showInputDialog(
@@ -422,8 +422,10 @@ public void testarResposta() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Quem Quer Ser o Aprovado?"));
+        jPanel1.setBackground(new java.awt.Color(189, 231, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Quem Quer Ser o Aprovado?", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 1, 12), new java.awt.Color(255, 149, 0))); // NOI18N
 
+        txtPergunta.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         txtPergunta.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtPergunta.setEnabled(false);
         txtPergunta.addActionListener(new java.awt.event.ActionListener() {
@@ -432,6 +434,7 @@ public void testarResposta() {
             }
         });
 
+        alternativaAButton.setBackground(new java.awt.Color(0, 174, 219));
         alternativaAButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 alternativaAButtonActionPerformed(evt);
@@ -439,20 +442,24 @@ public void testarResposta() {
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 149, 0));
         jLabel5.setText("A:");
 
+        alternativaDButton.setBackground(new java.awt.Color(0, 174, 219));
         alternativaDButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 alternativaDButtonActionPerformed(evt);
             }
         });
 
+        alternativaBButton.setBackground(new java.awt.Color(0, 174, 219));
         alternativaBButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 alternativaBButtonActionPerformed(evt);
             }
         });
 
+        alternativaCButton.setBackground(new java.awt.Color(0, 174, 219));
         alternativaCButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 alternativaCButtonActionPerformed(evt);
@@ -460,14 +467,19 @@ public void testarResposta() {
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 149, 0));
         jLabel2.setText("B:");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 149, 0));
         jLabel4.setText("D:");
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 149, 0));
         jLabel6.setText("C:");
 
+        sairButton.setBackground(new java.awt.Color(69, 172, 236));
+        sairButton.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         sairButton.setText("Sair");
         sairButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -475,6 +487,8 @@ public void testarResposta() {
             }
         });
 
+        dicasButton.setBackground(new java.awt.Color(69, 172, 236));
+        dicasButton.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         dicasButton.setText("Dicas");
         dicasButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -502,8 +516,8 @@ public void testarResposta() {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
-                        .addComponent(alternativaAButton, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(213, 213, 213))))
+                        .addComponent(alternativaAButton, javax.swing.GroupLayout.PREFERRED_SIZE, 582, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(212, 212, 212))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -543,7 +557,7 @@ public void testarResposta() {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(dicasButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(sairButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(123, Short.MAX_VALUE))
+                .addContainerGap(124, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -652,7 +666,7 @@ private void marcarBotaoIncorreto(String alternativa) {
             indiceQuestaoExibida = questaoAtual;
             carregarQuestao(questaoAtual);
         } else {
-        // Fim do jogo – respondeu todas as questões
+        // Fim do jogo
             JOptionPane.showMessageDialog(this, "Fim do jogo!\nSua pontuação: " + pontuacao,
                 "Jogo Finalizado", JOptionPane.INFORMATION_MESSAGE);
 

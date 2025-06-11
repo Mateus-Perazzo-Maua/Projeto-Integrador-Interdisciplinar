@@ -17,7 +17,6 @@ public class TelaDica extends JFrame {
     private boolean dicasEliminarRestantes = false;
     private boolean dicaTestarUsada = false;
 
-    // CONSTRUTOR MODIFICADO
     public TelaDica(TelaJogo telaJogo) {    
         initComponents();
         setLocationRelativeTo(null);
@@ -28,19 +27,19 @@ public class TelaDica extends JFrame {
     
      private void atualizarEstadoBotoes() {
         if (telaJogo != null) {
-            // Verifica dica pular
+            // verifica dica de pular
             if (telaJogo.isDicaPularUsada()) {
                 pularQuestaoButton.setEnabled(false);
                 pularQuestaoButton.setText("Pular Questão (USADO)");
             }
             
-            // Verifica dica testar
+            // verifica dica de testar
             if (telaJogo.isDicaTestarUsada()) {
                 testarRespostaButton.setEnabled(false);
                 testarRespostaButton.setText("Testar Resposta (USADO)");
             }
             
-            // Verifica dica eliminar
+            // verifica dica de eliminar
             if (telaJogo.isDicasEliminarEsgotadas()) {
                 eliminarErradasButton.setEnabled(false);
                 eliminarErradasButton.setText("Eliminar Alternativas (USADO)");
@@ -60,8 +59,10 @@ public class TelaDica extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Colégio Poliedro"));
+        jPanel1.setBackground(new java.awt.Color(189, 231, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Colégio Poliedro", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 1, 12), new java.awt.Color(255, 149, 0))); // NOI18N
 
+        pularQuestaoButton.setBackground(new java.awt.Color(69, 172, 236));
         pularQuestaoButton.setText("Pular Questão");
         pularQuestaoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,6 +70,7 @@ public class TelaDica extends JFrame {
             }
         });
 
+        testarRespostaButton.setBackground(new java.awt.Color(69, 172, 236));
         testarRespostaButton.setText("Testar Resposta");
         testarRespostaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,6 +78,7 @@ public class TelaDica extends JFrame {
             }
         });
 
+        eliminarErradasButton.setBackground(new java.awt.Color(69, 172, 236));
         eliminarErradasButton.setText("Eliminar Alternativas");
         eliminarErradasButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +86,7 @@ public class TelaDica extends JFrame {
             }
         });
 
+        voltarButton.setBackground(new java.awt.Color(69, 172, 236));
         voltarButton.setText("Voltar");
         voltarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,7 +94,8 @@ public class TelaDica extends JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("sansserif", 0, 35)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 35)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 149, 0));
         jLabel1.setText("Dicas");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -160,14 +165,12 @@ public class TelaDica extends JFrame {
         
         telaJogo.marcarDicaPularComoUsada();
         
-        // Atualiza o botão
+        // atualiza botão
         pularQuestaoButton.setEnabled(false);
         pularQuestaoButton.setText("Pular Questão (USADO)");
 
-        // Chama o método da TelaJogo
         telaJogo.pularQuestao();
 
-        // Fecha a tela de dicas
         dispose();
     }//GEN-LAST:event_pularQuestaoButtonActionPerformed
 
@@ -191,17 +194,14 @@ public class TelaDica extends JFrame {
       
         telaJogo.marcarDicaEliminarComoUsada();
         
-        // Atualiza o botão
+        // atualiza botao
         eliminarErradasButton.setEnabled(false);
         eliminarErradasButton.setText("Eliminar Alternativas (USADO)");
 
-        // Chama o método da TelaJogo
         telaJogo.eliminarAlternativasErradas();
 
-        // Mensagem de confirmação
         JOptionPane.showMessageDialog(this, "Duas alternativas incorretas foram eliminadas!");
         
-        // Fecha a tela de dicas
         dispose();
 
     }//GEN-LAST:event_eliminarErradasButtonActionPerformed
@@ -221,14 +221,12 @@ public class TelaDica extends JFrame {
          
         telaJogo.marcarDicaTestarComoUsada();
         
-        // Atualiza o botão
+        // atualiza botão
         testarRespostaButton.setEnabled(false);
         testarRespostaButton.setText("Testar Resposta (USADO)");
         
-        // Chama o método da TelaJogo
         telaJogo.testarResposta();
         
-        // Fecha a tela de dicas
         dispose();
     }//GEN-LAST:event_testarRespostaButtonActionPerformed
 

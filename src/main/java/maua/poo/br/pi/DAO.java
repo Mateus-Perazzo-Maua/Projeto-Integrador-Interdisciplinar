@@ -27,7 +27,7 @@ public class DAO {
 
         try (ResultSet rs = ps.executeQuery()) {
             if (rs.next()) {
-                return rs.getString("tipo"); // retorna "aluno" ou "professor"
+                return rs.getString("tipo"); //retrona se é aluno ou prof
             }
         }
     }
@@ -109,7 +109,7 @@ public class DAO {
             Questao q = new Questao();
             q.setId(rs.getInt("id"));
             q.setEnunciado(rs.getString("enunciado"));
-            q.setCorreta(rs.getString("correta")); // não "materia"!
+            q.setCorreta(rs.getString("correta"));
             lista.add(q);
         }
     } catch (SQLException e) {

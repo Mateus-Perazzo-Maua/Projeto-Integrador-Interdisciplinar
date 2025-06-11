@@ -55,14 +55,21 @@ public class TelaGerenciarQuestoes extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocation(new java.awt.Point(0, 0));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Gerenciamento de questões"));
+        jPanel1.setBackground(new java.awt.Color(189, 231, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Gerenciamento de Questões", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 1, 12), new java.awt.Color(255, 149, 0))); // NOI18N
 
         enunciadoTextArea.setColumns(20);
+        enunciadoTextArea.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         enunciadoTextArea.setRows(5);
+        enunciadoTextArea.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(69, 172, 236)));
         jScrollPane1.setViewportView(enunciadoTextArea);
 
+        enunciadoLabel.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        enunciadoLabel.setForeground(new java.awt.Color(255, 149, 0));
         enunciadoLabel.setText("Enunciado da questão");
 
+        materiaCombo.setBackground(new java.awt.Color(69, 172, 236));
+        materiaCombo.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         materiaCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Português", "Literatura", "História", "Geografia", "Filosofia", "Sociologia", "Inglês", "Matemática", "Física", "Química", "Biologia" }));
         materiaCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,20 +77,32 @@ public class TelaGerenciarQuestoes extends javax.swing.JFrame {
             }
         });
 
+        materiaLabel.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        materiaLabel.setForeground(new java.awt.Color(255, 149, 0));
         materiaLabel.setText("Selecione a matéria");
 
-        altDTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Alternativa D"));
+        altDTextField.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        altDTextField.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alternativa D", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 0, 12), new java.awt.Color(255, 149, 0))); // NOI18N
 
-        altATextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Alternativa A"));
+        altATextField.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        altATextField.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alternativa A", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 0, 12), new java.awt.Color(255, 149, 0))); // NOI18N
 
-        altBTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Alternativa B"));
+        altBTextField.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        altBTextField.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alternativa B", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 0, 12), new java.awt.Color(255, 149, 0))); // NOI18N
 
-        altCTextField.setBorder(javax.swing.BorderFactory.createTitledBorder("Alternativa C"));
+        altCTextField.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
+        altCTextField.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Alternativa C", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Trebuchet MS", 0, 12), new java.awt.Color(255, 149, 0))); // NOI18N
 
+        altCorretaLabel.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        altCorretaLabel.setForeground(new java.awt.Color(255, 149, 0));
         altCorretaLabel.setText("Aternativa correta");
 
+        altCorretaCombo.setBackground(new java.awt.Color(69, 172, 236));
+        altCorretaCombo.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         altCorretaCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "A", "B", "C", "D" }));
 
+        adicionarQuestaoButton.setBackground(new java.awt.Color(69, 172, 236));
+        adicionarQuestaoButton.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         adicionarQuestaoButton.setText("Adicionar Questão");
         adicionarQuestaoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,6 +110,8 @@ public class TelaGerenciarQuestoes extends javax.swing.JFrame {
             }
         });
 
+        voltarButton.setBackground(new java.awt.Color(69, 172, 236));
+        voltarButton.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         voltarButton.setText("Voltar");
         voltarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,6 +119,8 @@ public class TelaGerenciarQuestoes extends javax.swing.JFrame {
             }
         });
 
+        dificuldadeCombo.setBackground(new java.awt.Color(69, 172, 236));
+        dificuldadeCombo.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         dificuldadeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fácil", "Média", "Difícil" }));
         dificuldadeCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,12 +128,20 @@ public class TelaGerenciarQuestoes extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 149, 0));
         jLabel1.setText("Selecione a dificuldade da questão");
 
+        serieCombo.setBackground(new java.awt.Color(69, 172, 236));
+        serieCombo.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         serieCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Primeiro", "Segundo", "Terceiro" }));
 
+        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 149, 0));
         jLabel2.setText("Selecione a série");
 
+        listarQuestaoButton.setBackground(new java.awt.Color(69, 172, 236));
+        listarQuestaoButton.setFont(new java.awt.Font("Trebuchet MS", 0, 12)); // NOI18N
         listarQuestaoButton.setText("Listar Questões");
         listarQuestaoButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,7 +153,7 @@ public class TelaGerenciarQuestoes extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
             .addComponent(materiaCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(altATextField)
             .addComponent(altBTextField)
@@ -140,13 +171,13 @@ public class TelaGerenciarQuestoes extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(dificuldadeCombo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(81, 81, 81)
                 .addComponent(voltarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(43, 43, 43)
                 .addComponent(listarQuestaoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addGap(45, 45, 45)
                 .addComponent(adicionarQuestaoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,8 +209,8 @@ public class TelaGerenciarQuestoes extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(altCorretaLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(altCorretaCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(altCorretaCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(voltarButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(listarQuestaoButton, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -191,10 +222,9 @@ public class TelaGerenciarQuestoes extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
